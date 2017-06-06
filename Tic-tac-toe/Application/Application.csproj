@@ -7,7 +7,7 @@
     <ProjectGuid>{FE645613-E487-43E1-865F-1C70FB158AE9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Application</RootNamespace>
+    <RootNamespace>MyApplication</RootNamespace>
     <AssemblyName>Application</AssemblyName>
     <DefaultLanguage>ru-RU</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
@@ -106,9 +106,12 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="BasicMadeMovingEngine.cs" />
     <Compile Include="ComputerEngine.cs" />
+    <Compile Include="ExtendedMadeMovingEngine.cs" />
     <Compile Include="GameEngine.cs" />
     <Compile Include="GameSettings.cs" />
+    <Compile Include="IMadeMovingEngine.cs" />
     <Compile Include="TicTacToeMatrix.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Application.rd.xml" />

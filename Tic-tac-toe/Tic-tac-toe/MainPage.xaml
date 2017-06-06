@@ -5,9 +5,369 @@
     xmlns:local="using:Tic_tac_toe"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:common="using:Windows.UI.Composition"
     mc:Ignorable="d">
+    <Page.Resources>
+        <LinearGradientBrush x:Key="colorZero" StartPoint="1,0" EndPoint="0,0">
+            <GradientStop Color="#FFBBBBBB" Offset="0"/>
+            <GradientStop Color="White" Offset="0.452"/>
+            <GradientStop Color="#E5FFFFFF"/>
+            <GradientStop Color="#E5FFFFFF" Offset="0.856"/>
+        </LinearGradientBrush>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Border x:Key="BorderTopLeft" BorderThickness="0,0,4,4" CornerRadius="10">
+            <Border.BorderBrush>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF6DBDFF" Offset="0"/>
+                    <GradientStop Color="#FF69B9FB" Offset="1"/>
+                    <GradientStop Color="#FFB1DCFF" Offset="0.504"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+        </Border>
+        <Border  x:Key="BorderTop" BorderThickness="4,0,4,4" CornerRadius="10">
+            <Border.BorderBrush>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF6DBDFF" Offset="0"/>
+                    <GradientStop Color="#FFA2D5FF" Offset="1"/>
+                    <GradientStop Color="#FFC2E1FB" Offset="0.509"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+        </Border>
 
+        <Border x:Key="BorderTopRight" BorderThickness="4,0,0,4" CornerRadius="10">
+            <Border.BorderBrush>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF6DBDFF" Offset="0"/>
+                    <GradientStop Color="#FFADDAFF" Offset="1"/>
+                    <GradientStop Color="#FFB8DCF9" Offset="0.461"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+        </Border>
+
+        <Border x:Key="BorderLeft" BorderThickness="0,4,4,4" CornerRadius="10">
+            <Border.BorderBrush>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF6DBDFF" Offset="0"/>
+                    <GradientStop Color="#FF69B9FB" Offset="1"/>
+                    <GradientStop Color="#FFDFE9F1" Offset="0.496"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+        </Border>
+
+        <Border x:Key="BorderCenter" BorderThickness="4" CornerRadius="10">
+            <Border.BorderBrush>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF6DBDFF" Offset="0"/>
+                    <GradientStop Color="#FF69B9FB" Offset="1"/>
+                    <GradientStop Color="#FFE0F1FF" Offset="0.261"/>
+                    <GradientStop Color="#FFAFDBFF" Offset="0.704"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+        </Border>
+
+        <Border x:Key="BorderRight" BorderThickness="4,4,0,4" CornerRadius="10">
+            <Border.BorderBrush>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF6DBDFF" Offset="0"/>
+                    <GradientStop Color="#FF69B9FB" Offset="1"/>
+                    <GradientStop Color="#FFCEDBE6" Offset="0.461"/>
+                    <GradientStop Color="#FF77B2E4" Offset="0.883"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+        </Border>
+
+
+
+        <Border x:Key="BorderBottomLeft" BorderThickness="0,4,4,0" CornerRadius="10">
+            <Border.BorderBrush>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF70BAF7" Offset="0"/>
+                    <GradientStop Color="#FF69B9FB" Offset="1"/>
+                    <GradientStop Color="#FFC9E4FB" Offset="0.535"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+           </Border>
+        <Border x:Key="BorderBottomCenter" BorderBrush="#FF93CEFF" BorderThickness="4,4,4,0" CornerRadius="10">
+        </Border>
+        <Border x:Key="BorderBottomRight" BorderThickness="4,4,0,0" CornerRadius="10">
+            <Border.BorderBrush>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF6DBDFF" Offset="0"/>
+                    <GradientStop Color="#FF69B9FB" Offset="1"/>
+                    <GradientStop Color="#FF6ABAFC" Offset="0.526"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+        </Border>
+        <Path x:Key="pathZero" StrokeStartLineCap="Round"
+              StrokeEndLineCap="Round"
+              StrokeThickness="9"
+              RenderTransformOrigin="0.5,0.8571"
+              Data="M 20,8 c 30,-2 30,25 10,30 c -20,5 -35,-20 -13,-29">
+            <Path.Stroke>
+                <LinearGradientBrush StartPoint="1,0" EndPoint="0,0">
+                    <GradientStop Color="#FFBBBBBB" Offset="0"/>
+                    <GradientStop Color="White" Offset="0.452"/>
+                    <GradientStop Color="#E5FFFFFF"/>
+                    <GradientStop Color="#E5FFFFFF" Offset="0.856"/>
+                </LinearGradientBrush>
+            </Path.Stroke>
+        </Path>
+    </Page.Resources>
+    <Grid Background="#FF6055C7">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="201*"/>
+            <ColumnDefinition Width="350"/>
+            <ColumnDefinition Width="199*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="19*"/>
+            <RowDefinition Height="137*"/>
+            <RowDefinition Height="24*"/>
+        </Grid.RowDefinitions>
+        <Border x:Name="Table" Background="#FF002B44" Height="{Binding ElementName=Table, Path=ActualWidth}" Margin="0,12.667,0,13" Grid.Row="1" Grid.Column="1">
+            <!--<StackPanel Margin="7,4,0,0" >
+                <StackPanel Orientation="Horizontal">
+                        <Border Width="100" x:Name="b1" Height="100" BorderThickness="0,0,4,4" CornerRadius="10">
+                        <Border.BorderBrush>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FF6DBDFF" Offset="0"/>
+                                <GradientStop Color="#FF69B9FB" Offset="1"/>
+                                <GradientStop Color="#FFB1DCFF" Offset="0.504"/>
+                            </LinearGradientBrush>
+                        </Border.BorderBrush>
+                        --><!--<Canvas x:Name="c1" Margin="20,19,0,0">
+                            <Canvas.Clip>
+                                <RectangleGeometry Rect="0,0,80,85">
+                                    <RectangleGeometry.Transform>
+                                        <TranslateTransform x:Name="_clip2"/>
+                                    </RectangleGeometry.Transform>
+                                </RectangleGeometry>
+                            </Canvas.Clip>
+                            <Path x:Name="p1" StrokeStartLineCap="Round"
+              StrokeEndLineCap="Round"
+              StrokeThickness="10"
+              RenderTransformOrigin="0.5,0.8571"
+              Data="M 10,8 c 30,25 25,30 30,40">
+                                <Path.Stroke>
+                                    <LinearGradientBrush StartPoint="1,0" EndPoint="0,0">
+                                        <GradientStop Color="#FFBBBBBB" Offset="0"/>
+                                        <GradientStop Color="White" Offset="0.452"/>
+                                        <GradientStop Color="#E5FFFFFF"/>
+                                        <GradientStop Color="#E5FFFFFF" Offset="0.856"/>
+                                    </LinearGradientBrush>
+                                </Path.Stroke>
+                                <Path.RenderTransform>
+                                    <RotateTransform x:Name="_rot2" />
+                                </Path.RenderTransform>
+
+                            </Path>
+                            <Path StrokeStartLineCap="Round"
+              StrokeEndLineCap="Round"
+              StrokeThickness="10"
+              RenderTransformOrigin="0.5,0.8571"
+              Data="M 40,5 c -8,20 -20,35 -32,38">
+                                <Path.Stroke>
+                                    <LinearGradientBrush StartPoint="1,0" EndPoint="0,0">
+                                        <GradientStop Color="#FFBBBBBB" Offset="0"/>
+                                        <GradientStop Color="#ACAAA0A0" Offset="0.997"/>
+                                        <GradientStop Color="White" Offset="0.438"/>
+                                        <GradientStop Color="#E5FAFAFA" Offset="0.743"/>
+                                        <GradientStop Color="#E3FFFFFF" Offset="0.099"/>
+                                    </LinearGradientBrush>
+                                </Path.Stroke>
+                                <Path.RenderTransform>
+                                    <RotateTransform x:Name="_rot3" />
+                                </Path.RenderTransform>
+
+                            </Path>
+                        </Canvas>--><!--
+                        <Canvas x:Name="c1" Margin="6"></Canvas>
+                    </Border>
+                    <Border Width="100" Height="100" BorderThickness="4,0,4,4" CornerRadius="10" Background="#FF006863">
+                        <Border.BorderBrush>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FF6DBDFF" Offset="0"/>
+                                <GradientStop Color="#FFA2D5FF" Offset="1"/>
+                                <GradientStop Color="#FFC2E1FB" Offset="0.509"/>
+                            </LinearGradientBrush>
+                        </Border.BorderBrush>
+                        --><!--<Canvas Width="50" Height="50"
+              HorizontalAlignment="Left"
+              VerticalAlignment="Top"
+              Margin="26,20,0,0" Grid.Row="1">
+                            <Canvas.Clip>
+                                <RectangleGeometry Rect="0,0,50,55">
+                                    <RectangleGeometry.Transform>
+                                        <TranslateTransform x:Name="_clip54"/>
+                                    </RectangleGeometry.Transform>
+                                </RectangleGeometry>
+                            </Canvas.Clip>
+                            <Path StrokeStartLineCap="Round"
+              StrokeEndLineCap="Round"
+              StrokeThickness="9"
+              RenderTransformOrigin="0.5,0.8571"
+              Data="M 20,8 c 30,-2 30,25 10,30 c -20,5 -35,-20 -13,-29">
+                                <Path.Stroke>
+                                    <LinearGradientBrush StartPoint="1,0" EndPoint="0,0">
+                                        <GradientStop Color="#FFBBBBBB" Offset="0"/>
+                                        <GradientStop Color="White" Offset="0.452"/>
+                                        <GradientStop Color="#E5FFFFFF"/>
+                                        <GradientStop Color="#E5FFFFFF" Offset="0.856"/>
+                                    </LinearGradientBrush>
+                                </Path.Stroke>
+                                <Path.RenderTransform>
+                                    <RotateTransform x:Name="_rot5754" />
+                                </Path.RenderTransform>
+
+                            </Path>
+
+                        </Canvas>--><!--
+                        <Canvas x:Name="c2" Margin="6"></Canvas>
+                    </Border>
+                    <Border Width="100" Height="100" BorderThickness="4,0,0,4" CornerRadius="10" Background="#FF006863">
+                        <Border.BorderBrush>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FF6DBDFF" Offset="0"/>
+                                <GradientStop Color="#FFADDAFF" Offset="1"/>
+                                <GradientStop Color="#FFB8DCF9" Offset="0.461"/>
+                            </LinearGradientBrush>
+                        </Border.BorderBrush>
+                        <Canvas x:Name="c3" Margin="6"></Canvas>
+                    </Border>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Border Width="100" Height="100" BorderThickness="0,4,4,4" CornerRadius="10">
+                        <Border.BorderBrush>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FF6DBDFF" Offset="0"/>
+                                <GradientStop Color="#FF69B9FB" Offset="1"/>
+                                <GradientStop Color="#FFDFE9F1" Offset="0.496"/>
+                            </LinearGradientBrush>
+                        </Border.BorderBrush>
+                        <Canvas x:Name="c7" Margin="6"></Canvas>
+                    </Border>
+                    <Border  Width="100" Height="100" BorderThickness="4" CornerRadius="10">
+                        
+                        <Border.BorderBrush>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FF6DBDFF" Offset="0"/>
+                                <GradientStop Color="#FF69B9FB" Offset="1"/>
+                                <GradientStop Color="#FFE0F1FF" Offset="0.261"/>
+                                <GradientStop Color="#FFAFDBFF" Offset="0.704"/>
+                            </LinearGradientBrush>
+                        </Border.BorderBrush>
+
+                        <Canvas x:Name="c8" Margin="6"></Canvas>
+                    </Border>
+                    <Border Width="100" Height="100" BorderThickness="4,4,0,4" CornerRadius="10">
+                        <Border.BorderBrush>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FF6DBDFF" Offset="0"/>
+                                <GradientStop Color="#FF69B9FB" Offset="1"/>
+                                <GradientStop Color="#FFCEDBE6" Offset="0.461"/>
+                                <GradientStop Color="#FF77B2E4" Offset="0.883"/>
+                            </LinearGradientBrush>
+                        </Border.BorderBrush>
+                        <Canvas x:Name="c9" Margin="6"></Canvas>
+                    </Border>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Border Width="100" Height="100" BorderThickness="0,4,4,0" CornerRadius="10">
+                        <Border.BorderBrush>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FF70BAF7" Offset="0"/>
+                                <GradientStop Color="#FF69B9FB" Offset="1"/>
+                                <GradientStop Color="#FFC9E4FB" Offset="0.535"/>
+                            </LinearGradientBrush>
+                        </Border.BorderBrush>
+                        <Canvas x:Name="c4" Margin="6" PointerPressed="c4_PointerPressed" Background="#00FF8C8C"/>
+                    </Border>
+                    <Border x:Name="b5" Width="100" Height="100" BorderBrush="#FF93CEFF" BorderThickness="4,4,4,0" CornerRadius="10">
+                        <Canvas x:Name="c5" Margin="6"></Canvas>
+                    </Border>
+                    <Border Width="100" Height="100" BorderThickness="4,4,0,0" CornerRadius="10">
+                        <Border.BorderBrush>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FF6DBDFF" Offset="0"/>
+                                <GradientStop Color="#FF69B9FB" Offset="1"/>
+                                <GradientStop Color="#FF6ABAFC" Offset="0.526"/>
+                            </LinearGradientBrush>
+                        </Border.BorderBrush>
+                        <Canvas x:Name="c6"
+              Margin="6">
+                                                      
+                        </Canvas>
+
+                    </Border>
+                </StackPanel>
+            </StackPanel>-->
+        </Border>
+        <Button Content="3*3" HorizontalAlignment="Left" Margin="20,4,0,3" VerticalAlignment="Stretch" Width="193" Background="#FFA3D8DA" FontSize="36" FontFamily="Georgia" Click="Button_Click"/>
+
+        <Canvas Width="50" Height="50"
+              HorizontalAlignment="Left"
+              VerticalAlignment="Top"
+              Margin="39,0,0,0" Grid.Row="1">
+           
+            <Path StrokeStartLineCap="Round"
+              StrokeEndLineCap="Round"
+              StrokeThickness="10"
+              RenderTransformOrigin="0.5,0.8571"
+              Data="M 10,8 c 15,10 20,20 28,35">
+                <Path.Stroke>
+                    <LinearGradientBrush StartPoint="1,0" EndPoint="0,0">
+                        <GradientStop Color="#FFBBBBBB" Offset="0"/>
+                        <GradientStop Color="White" Offset="0.452"/>
+                        <GradientStop Color="#E5FFFFFF"/>
+                        <GradientStop Color="#E5FFFFFF" Offset="0.856"/>
+                    </LinearGradientBrush>
+                </Path.Stroke>
+                <Path.RenderTransform>
+                    <RotateTransform x:Name="_rot25" />
+                </Path.RenderTransform>
+
+            </Path>
+            <Path StrokeStartLineCap="Round"
+              StrokeEndLineCap="Round"
+              StrokeThickness="10"
+              RenderTransformOrigin="0.5,0.8571"
+              Data="M 40,5 c -8,20 -20,35 -32,38">
+                <Path.Stroke>
+                    <LinearGradientBrush StartPoint="1,0" EndPoint="0,0">
+                        <GradientStop Color="#FFBBBBBB" Offset="0"/>
+                        <GradientStop Color="#ACAAA0A0" Offset="0.997"/>
+                        <GradientStop Color="White" Offset="0.438"/>
+                        <GradientStop Color="#E5FAFAFA" Offset="0.743"/>
+                        <GradientStop Color="#E3FFFFFF" Offset="0.099"/>
+                    </LinearGradientBrush>
+                </Path.Stroke>
+                <Path.RenderTransform>
+                    <RotateTransform x:Name="_rot53" />
+                </Path.RenderTransform>
+
+            </Path>
+        </Canvas>
+        <Canvas Width="50" Height="50"
+              HorizontalAlignment="Left"
+              VerticalAlignment="Top"
+              Margin="114,0,0,0" Grid.Row="1">
+            
+            <Path StrokeStartLineCap="Round"
+              StrokeEndLineCap="Round"
+              StrokeThickness="9"
+              Data="M 20,8 c 30,-2 30,25 10,30 c -20,5 -35,-20 -13,-29">
+                <Path.Stroke>
+                    <LinearGradientBrush StartPoint="1,0" EndPoint="0,0">
+                        <GradientStop Color="#FFBBBBBB" Offset="0"/>
+                        <GradientStop Color="White" Offset="0.452"/>
+                        <GradientStop Color="#E5FFFFFF"/>
+                        <GradientStop Color="#E5FFFFFF" Offset="0.856"/>
+                    </LinearGradientBrush>
+                </Path.Stroke>
+               
+
+            </Path>
+
+        </Canvas>
     </Grid>
 </Page>

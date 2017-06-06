@@ -1,13 +1,22 @@
-﻿namespace Application
+﻿namespace MyApplication
 {
     internal class ComputerEngine
     {
         private readonly TicTacToeMatrix Matrix;
         private readonly TicTacToe ComputerSide;
+        private readonly IMadeMovingEngine MadeMovingEngine;
+        private readonly PlayingFieldMode GameMode;
 
-        public ComputerEngine(TicTacToeMatrix matrix, TicTacToe computerSide)
+        public ComputerEngine(TicTacToeMatrix matrix, TicTacToe computerSide, PlayingFieldMode mode)
         {
             Matrix = matrix;
+            GameMode = mode;
+            if (GameMode == PlayingFieldMode.Basic) {
+                MadeMovingEngine = new BasicMadeMovingEngine();
+            }
+            else {
+                MadeMovingEngine = new ExtendedMadeMovingEngine();
+            }
             ComputerSide = computerSide;
             AttachEventHandlers();
         }
@@ -20,7 +29,7 @@
 
         private void OnPlayerMadeMove(object sender, System.EventArgs e)
         {
-            Matrix.CellList[0] = ComputerSide;
+            Matrix.CellList[MadeMovingEngine.MakeMove(Matrix.CellList)] = ComputerSide;
             Matrix.RaiseMatrixChanged(null, ComputerSide);
         }
 

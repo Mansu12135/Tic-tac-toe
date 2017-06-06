@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace MyApplication
 {
-    class GameEngine
+    internal class ExtendedMadeMovingEngine : IMadeMovingEngine
     {
-        private readonly GameSettings Settings;
-        public GameEngine(GameSettings settings)
+        public int MakeMove(List<TicTacToe> list)
         {
-            Settings = settings;
+            throw new NotImplementedException();
         }
     }
 }

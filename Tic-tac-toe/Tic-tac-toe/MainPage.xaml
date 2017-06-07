@@ -86,7 +86,7 @@
                     <GradientStop Color="#FFC9E4FB" Offset="0.535"/>
                 </LinearGradientBrush>
             </Border.BorderBrush>
-           </Border>
+        </Border>
         <Border x:Key="BorderBottomCenter" BorderBrush="#FF93CEFF" BorderThickness="4,4,4,0" CornerRadius="10">
         </Border>
         <Border x:Key="BorderBottomRight" BorderThickness="4,4,0,0" CornerRadius="10">
@@ -113,7 +113,7 @@
             </Path.Stroke>
         </Path>
     </Page.Resources>
-    <Grid Background="#FF6055C7">
+    <Grid Background="#FF005D78">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="201*"/>
             <ColumnDefinition Width="350"/>
@@ -124,7 +124,13 @@
             <RowDefinition Height="137*"/>
             <RowDefinition Height="24*"/>
         </Grid.RowDefinitions>
-        <Border x:Name="Table" Background="#FF002B44" Height="{Binding ElementName=Table, Path=ActualWidth}" Margin="0,12.667,0,13" Grid.Row="1" Grid.Column="1">
+        <Border x:Name="Table" Background="#FF002B44" Height="{Binding ElementName=Table, Path=ActualWidth}" Margin="0,12.667,0,13" Grid.Row="1" Grid.Column="1" BorderThickness="3">
+            <Border.BorderBrush>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF506380" Offset="1"/>
+                    <GradientStop Color="#FF83A7DA"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
             <!--<StackPanel Margin="7,4,0,0" >
                 <StackPanel Orientation="Horizontal">
                         <Border Width="100" x:Name="b1" Height="100" BorderThickness="0,0,4,4" CornerRadius="10">
@@ -135,7 +141,8 @@
                                 <GradientStop Color="#FFB1DCFF" Offset="0.504"/>
                             </LinearGradientBrush>
                         </Border.BorderBrush>
-                        --><!--<Canvas x:Name="c1" Margin="20,19,0,0">
+                        -->
+            <!--<Canvas x:Name="c1" Margin="20,19,0,0">
                             <Canvas.Clip>
                                 <RectangleGeometry Rect="0,0,80,85">
                                     <RectangleGeometry.Transform>
@@ -180,7 +187,8 @@
                                 </Path.RenderTransform>
 
                             </Path>
-                        </Canvas>--><!--
+                        </Canvas>-->
+            <!--
                         <Canvas x:Name="c1" Margin="6"></Canvas>
                     </Border>
                     <Border Width="100" Height="100" BorderThickness="4,0,4,4" CornerRadius="10" Background="#FF006863">
@@ -191,7 +199,8 @@
                                 <GradientStop Color="#FFC2E1FB" Offset="0.509"/>
                             </LinearGradientBrush>
                         </Border.BorderBrush>
-                        --><!--<Canvas Width="50" Height="50"
+                        -->
+            <!--<Canvas Width="50" Height="50"
               HorizontalAlignment="Left"
               VerticalAlignment="Top"
               Margin="26,20,0,0" Grid.Row="1">
@@ -221,7 +230,8 @@
 
                             </Path>
 
-                        </Canvas>--><!--
+                        </Canvas>-->
+            <!--
                         <Canvas x:Name="c2" Margin="6"></Canvas>
                     </Border>
                     <Border Width="100" Height="100" BorderThickness="4,0,0,4" CornerRadius="10" Background="#FF006863">
@@ -308,7 +318,7 @@
               HorizontalAlignment="Left"
               VerticalAlignment="Top"
               Margin="39,0,0,0" Grid.Row="1">
-           
+
             <Path StrokeStartLineCap="Round"
               StrokeEndLineCap="Round"
               StrokeThickness="10"
@@ -351,7 +361,7 @@
               HorizontalAlignment="Left"
               VerticalAlignment="Top"
               Margin="114,0,0,0" Grid.Row="1">
-            
+
             <Path StrokeStartLineCap="Round"
               StrokeEndLineCap="Round"
               StrokeThickness="9"
@@ -364,7 +374,7 @@
                         <GradientStop Color="#E5FFFFFF" Offset="0.856"/>
                     </LinearGradientBrush>
                 </Path.Stroke>
-               
+
 
             </Path>
 

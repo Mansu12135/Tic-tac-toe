@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Application
+namespace MyApplication
 {
     public class TicTacToeMatrix
     {
@@ -14,9 +14,14 @@ namespace Application
         {
             CellsInRow = playingFieldMode == PlayingFieldMode.Basic ? 3 : 25;
             Cells = new List<TicTacToe>((int)Math.Pow(CellsInRow, 2.0));
+            //by Kate
+            while (Cells.Count < Cells.Capacity)
+            {
+                Cells.Add(TicTacToe.Empty);
+            }
         }
 
-        internal TicTacToe this[int i, int j]
+        public TicTacToe this[int i, int j]
         {
             get { return Cells[i * CellsInRow + j]; }
             set

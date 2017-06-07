@@ -36,9 +36,18 @@ namespace Tic_tac_toe
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             // Table.Child = null;
+           // Field = new PlayingField(this, 3, Table.ActualWidth - Table.BorderThickness.Left * 2);
+          //  Table.Child = Field.Draw();
+        }
+
+        private void BasicMode_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            ContainerFirstPage.Visibility = Visibility.Collapsed;
+            //Table.Visibility = Visibility.Visible;
+            //Table.HorizontalAlignment = HorizontalAlignment.Stretch;
+            //Table.VerticalAlignment = VerticalAlignment.Stretch;
             Field = new PlayingField(this, 3, Table.ActualWidth - Table.BorderThickness.Left * 2);
             Table.Child = Field.Draw();
         }
-
     }
 }

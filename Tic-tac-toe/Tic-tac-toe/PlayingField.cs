@@ -180,12 +180,12 @@ namespace Tic_tac_toe
             if (Tic)
             {
                 SetX(canv);
-                 TicTac[i, j] = TicTacToe.Dagger;
+                Engine.MakeMove(i * 3 + j, TicTacToe.Dagger);
             }
             else
             {
                 SetZero(canv);
-                TicTac[i, j] = TicTacToe.Toe;
+                Engine.MakeMove(i * 3 + j, TicTacToe.Toe);
             }
             Tic = !Tic;
         }

@@ -1,22 +1,24 @@
-﻿namespace MyApplication
+﻿using System;
+
+namespace ApplicationLayer
 {
     internal class ComputerEngine
     {
-        private readonly TicTacToeMatrix Matrix;
         private readonly TicTacToe ComputerSide;
-        private readonly IMadeMovingEngine MadeMovingEngine;
+        private readonly Desk Desk;
         private readonly PlayingFieldMode GameMode;
+        private Action<TicTacToe> InvokeWin;
 
-        public ComputerEngine(TicTacToeMatrix matrix, TicTacToe computerSide, PlayingFieldMode mode)
+        public ComputerEngine(TicTacToe computerSide, PlayingFieldMode mode, Action<TicTacToe> invokeWin)
         {
-            Matrix = matrix;
             GameMode = mode;
             if (GameMode == PlayingFieldMode.Basic) {
-                MadeMovingEngine = new BasicMadeMovingEngine();
+                Desk = new Desk(9);
             }
             else {
-                MadeMovingEngine = new ExtendedMadeMovingEngine();
+                Desk = new Desk(25);
             }
+            InvokeWin = invokeWin;
             ComputerSide = computerSide;
             AttachEventHandlers();
         }
@@ -24,23 +26,35 @@
         private void AttachEventHandlers()
         {
             DetachEventHandlers();
-            Matrix.OnMadeMove += OnPlayerMadeMove;
+            Desk.GameCompleted += RaiseCompleteGame;
         }
 
-        private void OnPlayerMadeMove(object sender, System.EventArgs e)
+        internal (TicTacToe, int) OnPlayerMadeMove(int cell, TicTacToe side)
         {
-            Matrix.CellList[MadeMovingEngine.MakeMove(Matrix.CellList)] = ComputerSide;
-            Matrix.RaiseMatrixChanged(null, ComputerSide);
+            Desk[cell] = side;
+            if (side == ComputerSide)
+            {
+               return (ComputerSide, Desk.MakeMoveForPlayer(ComputerSide));
+            }
+            return (TicTacToe.Empty, -1);
         }
 
         private void DetachEventHandlers()
         {
-            Matrix.OnMadeMove -= OnPlayerMadeMove;
+            Desk.GameCompleted -= RaiseCompleteGame;
         }
 
-        private void CompleteGame()
+        internal void RaiseCompleteGame(TicTacToe side)
         {
-            Matrix.RaiseCompleteGame(TicTacToe.Empty);
+            InvokeWin(side);
         }
     }
+
+    public enum TicTacToe
+    {
+        Empty = 0,
+        Dagger = 1,
+        Toe = 2
+    }
 }
+

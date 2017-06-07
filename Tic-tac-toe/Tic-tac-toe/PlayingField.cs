@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 using Windows.UI;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
-using MyApplication;
 using Windows.Foundation;
 using Windows.UI.Xaml.Hosting;
 using System.Numerics;
+using ApplicationLayer;
 
 namespace Tic_tac_toe
 {
@@ -18,13 +18,31 @@ namespace Tic_tac_toe
         private int Size;
         private MainPage Page;
         private double Width;
-        private TicTacToeMatrix TicTac;
+        private GameEngine Engine;
         public PlayingField(MainPage page, int size, double width)
         {
             Page = page;
             Size = size;
             Width = width;
-            TicTac = new TicTacToeMatrix(PlayingFieldMode.Basic);
+            Engine =
+                new GameEngine(new GameSettings
+                {
+                    EnemyIsComputer = true,
+                    EnemySide = TicTacToe.Toe,
+                    PlayingFieldMode = PlayingFieldMode.Basic
+                });
+            Engine.OnGameCompleted += Engine_OnGameCompleted;
+            Engine.OnMatrixChanged += Engine_OnMatrixChanged;
+        }
+
+        private void Engine_OnMatrixChanged(int cell, TicTacToe side)
+        {
+            //computer made move
+        }
+
+        private void Engine_OnGameCompleted(string winnerName, TicTacToe winnerSide)
+        {
+            //game complete
         }
 
         public StackPanel Draw()
@@ -162,7 +180,7 @@ namespace Tic_tac_toe
             if (Tic)
             {
                 SetX(canv);
-                TicTac[i, j] = TicTacToe.Dagger;
+                 TicTac[i, j] = TicTacToe.Dagger;
             }
             else
             {

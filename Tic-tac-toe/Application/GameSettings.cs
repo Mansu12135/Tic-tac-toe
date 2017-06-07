@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MyApplication
+﻿
+namespace ApplicationLayer
 {
     public class GameSettings
     {
         public PlayingFieldMode PlayingFieldMode { get; set; }
 
-
         public bool EnemyIsComputer { get; set; }
+
+        public TicTacToe EnemySide { get; set; }
     }
     public enum PlayingFieldMode
     {

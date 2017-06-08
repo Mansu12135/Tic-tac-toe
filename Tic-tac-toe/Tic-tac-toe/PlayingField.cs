@@ -35,11 +35,13 @@ namespace Tic_tac_toe
                 });
             Engine.OnGameCompleted += Engine_OnGameCompleted;
             Engine.OnMatrixChanged += Engine_OnMatrixChanged;
+           
         }
 
         private void Engine_OnMatrixChanged(int cell, TicTacToe side)
         {
-            foreach(var canv in canvases)
+            Dagger = false;
+            foreach (var canv in canvases)
             {
                 var split = canv.Tag.ToString().Split('-');
                 int i = Convert.ToInt32(split[0]);
@@ -63,6 +65,7 @@ namespace Tic_tac_toe
         {
             var sideSize = Width / Size;
             var verticalPanel = new StackPanel();
+            verticalPanel.Loaded += VerticalPanel_Loaded;
             verticalPanel.HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Stretch;
             verticalPanel.VerticalAlignment = Windows.UI.Xaml.VerticalAlignment.Stretch;
             for (int i = 0; i < Size; i++)
@@ -154,6 +157,12 @@ namespace Tic_tac_toe
             }
             return verticalPanel;
         }
+
+        private void VerticalPanel_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            Engine.MakeMove(Int32.MinValue, TicTacToe.Toe);
+        }
+
         private void SetShadow(Vector3 offset, Canvas c, double size)
         {
             var hostVisual = ElementCompositionPreview.GetElementVisual(c);
@@ -187,6 +196,7 @@ namespace Tic_tac_toe
             {
                 canv.Children.Clear();
             }
+           
             var pp = e.GetCurrentPoint(canv);
             point += "'" + pp.Position.X + "-" + pp.Position.Y + "' ";
             var split = canv.Tag.ToString().Split('-');
@@ -196,16 +206,18 @@ namespace Tic_tac_toe
             {
                 if (!withComp)
                 {
+                    Dagger = !Dagger;
                     SetX(canv);
                     Engine.MakeMove(i * 3 + j, TicTacToe.Dagger);
                 }
             }
             else
             {
+                Dagger = !Dagger;
                 SetZero(canv);
                 Engine.MakeMove(i * 3 + j, TicTacToe.Toe);
             }
-            Dagger = !Dagger;
+            
         }
 
         private void SetZero(Canvas canvas)

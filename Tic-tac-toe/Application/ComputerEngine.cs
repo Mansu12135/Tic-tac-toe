@@ -39,7 +39,9 @@ namespace ApplicationLayer
                 }
                 if (ComputerSide != TicTacToe.Empty)
                 {
-                    return (ComputerSide, Desk.MakeMoveForPlayer(ComputerSide));
+                    int result = Desk.MakeMoveForPlayer(ComputerSide);
+                    Desk[result] = ComputerSide;
+                    return (ComputerSide, result);
                 }
             }
             return (TicTacToe.Empty, -1);

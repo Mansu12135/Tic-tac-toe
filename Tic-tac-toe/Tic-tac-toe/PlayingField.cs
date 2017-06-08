@@ -58,6 +58,7 @@ namespace Tic_tac_toe
 
         private void Engine_OnGameCompleted(string winnerName, TicTacToe winnerSide)
         {
+            OnGameCompleted?.Invoke();
             //game complete
         }
         List<Canvas> canvases = new List<Canvas>();
@@ -162,7 +163,9 @@ namespace Tic_tac_toe
         {
             Engine.MakeMove(Int32.MinValue, TicTacToe.Toe);
         }
+        public delegate void GameStatusHandler();
 
+        public event GameStatusHandler OnGameCompleted;
         private void SetShadow(Vector3 offset, Canvas c, double size)
         {
             var hostVisual = ElementCompositionPreview.GetElementVisual(c);
@@ -194,7 +197,7 @@ namespace Tic_tac_toe
             if (canv.Tag == null) return;
             if (canv.Children.Count == 1)
             {
-                canv.Children.Clear();
+                return;
             }
            
             var pp = e.GetCurrentPoint(canv);

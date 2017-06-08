@@ -127,7 +127,15 @@
             </Path.Stroke>
         </Path>
     </Page.Resources>
-    <Grid Background="#FF005D78">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF41A3BB" Offset="0.34"/>
+                <GradientStop Color="#FF04596E" Offset="1"/>
+                <GradientStop Color="#FF185A9C" Offset="0.022"/>
+                <GradientStop Color="#FF20B1D6" Offset="0.73"/>
+            </LinearGradientBrush>
+        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="201*"/>
             <ColumnDefinition Width="350"/>
@@ -250,7 +258,7 @@
                                                                         <GradientStop Color="#FF1F8ABB" Offset="0.84"/>
                                                                     </LinearGradientBrush>
                                                                 </Border.Background>
-                                                                <TextBlock x:Name="BasicMode" FontSize="48" FontFamily="Calibri Light" Padding="0,10" TextAlignment="Center" PointerPressed="BasicMode_PointerPressed">Basic</TextBlock>
+                                                                    <TextBlock x:Name="BasicMode" FontSize="48" FontFamily="Calibri Light" Padding="0,10" TextAlignment="Center" PointerPressed="BasicMode_PointerPressed">One player</TextBlock>
                                                             </Border>
                                                         </Border>
                                                     </Border>
@@ -267,7 +275,7 @@
                                                                         <GradientStop Color="#FF1F8ABB" Offset="0.84"/>
                                                                     </LinearGradientBrush>
                                                                 </Border.Background>
-                                                                <TextBlock FontSize="48" FontFamily="Calibri Light" Padding="0,10" TextAlignment="Center" PointerPressed="TextBlock_PointerPressed">Extended</TextBlock>
+                                                                    <TextBlock FontSize="48" FontFamily="Calibri Light" Padding="0,10" TextAlignment="Center" PointerPressed="TextBlock_PointerPressed">Two player</TextBlock>
                                                             </Border>
                                                         </Border>
                                                     </Border>
@@ -472,7 +480,9 @@
             </StackPanel>-->
 
         </Border>
-
+        <Border HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Image Source="Assets/go-back-icon.yellow.png" PointerPressed="Image_PointerPressed" Width="54"></Image>
+        </Border>
 
         <!--<Button Content="3*3" HorizontalAlignment="Left" Margin="20,4,0,3" VerticalAlignment="Stretch" Width="193" Background="#FFA3D8DA" FontSize="36" FontFamily="Georgia" Click="Button_Click"/>
 

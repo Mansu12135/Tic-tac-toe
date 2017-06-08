@@ -108,6 +108,8 @@
     <None Include="Tic-tac-toe_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\8.png" />
+    <Content Include="Assets\go-back-icon.yellow.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

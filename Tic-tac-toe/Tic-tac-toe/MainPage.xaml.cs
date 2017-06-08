@@ -46,7 +46,29 @@ namespace Tic_tac_toe
             //Table.Visibility = Visibility.Visible;
             //Table.HorizontalAlignment = HorizontalAlignment.Stretch;
             //Table.VerticalAlignment = VerticalAlignment.Stretch;
-            Field = new PlayingField(this, 3, Table.ActualWidth - Table.BorderThickness.Left * 2);
+            Field = new PlayingField(this, 3, Table.ActualWidth - Table.BorderThickness.Left * 2,false);
+            Table.Child = Field.Draw();
+        }
+
+        private void Border_Loaded(object sender, RoutedEventArgs e)
+        {
+            colorStoryboard.Begin();
+            colorStoryboard.Completed += ColorStoryboard_Completed;
+
+        }
+
+        private void ColorStoryboard_Completed(object sender, object e)
+        {
+            colorStoryboard.Begin();
+        }
+
+        private void TextBlock_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            ContainerFirstPage.Visibility = Visibility.Collapsed;
+            //Table.Visibility = Visibility.Visible;
+            //Table.HorizontalAlignment = HorizontalAlignment.Stretch;
+            //Table.VerticalAlignment = VerticalAlignment.Stretch;
+            Field = new PlayingField(this, 3, Table.ActualWidth - Table.BorderThickness.Left * 2,true);
             Table.Child = Field.Draw();
         }
     }

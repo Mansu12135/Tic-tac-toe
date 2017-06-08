@@ -19,16 +19,18 @@ namespace Tic_tac_toe
         private MainPage Page;
         private double Width;
         private GameEngine Engine;
-        public PlayingField(MainPage page, int size, double width)
+        bool withComp = false;
+        public PlayingField(MainPage page, int size, double width, bool withComp)
         {
             Page = page;
+            withComp = withComp;
             Size = size;
             Width = width;
             Engine =
                 new GameEngine(new GameSettings
                 {
-                    EnemyIsComputer = true,
-                    EnemySide = TicTacToe.Toe,
+                    EnemyIsComputer = withComp,
+                    EnemySide = TicTacToe.Dagger,
                     PlayingFieldMode = PlayingFieldMode.Basic
                 });
             Engine.OnGameCompleted += Engine_OnGameCompleted;
@@ -37,6 +39,18 @@ namespace Tic_tac_toe
 
         private void Engine_OnMatrixChanged(int cell, TicTacToe side)
         {
+            foreach(var canv in canvases)
+            {
+                var split = canv.Tag.ToString().Split('-');
+                int i = Convert.ToInt32(split[0]);
+                int j = Convert.ToInt32(split[1]);
+                if(i * 3 + j == cell)
+                {
+                    SetX(canv);
+                    break;
+                }
+            }
+            //Engine.MakeMove(cell, side);
             //computer made move
         }
 
@@ -44,7 +58,7 @@ namespace Tic_tac_toe
         {
             //game complete
         }
-
+        List<Canvas> canvases = new List<Canvas>();
         public StackPanel Draw()
         {
             var sideSize = Width / Size;
@@ -127,6 +141,7 @@ namespace Tic_tac_toe
                         HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Stretch,
                         VerticalAlignment = Windows.UI.Xaml.VerticalAlignment.Stretch
                     };
+                    canvases.Add(canv);
                     canv.PointerPressed += Canv_PointerPressed;
                     canv.Tag = i.ToString() + "-" + j.ToString();
                     canv.Margin = new Windows.UI.Xaml.Thickness(6);
@@ -161,7 +176,7 @@ namespace Tic_tac_toe
             //// Add the shadow as a child of the host in the visual tree
             ElementCompositionPreview.SetElementChildVisual(c, shadowVisual);
         }
-        public bool Tic = false;
+        public bool Dagger = false;
         string point;
         private void Canv_PointerPressed(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
         {
@@ -177,17 +192,20 @@ namespace Tic_tac_toe
             var split = canv.Tag.ToString().Split('-');
             int i = Convert.ToInt32(split[0]);
             int j = Convert.ToInt32(split[1]);
-            if (Tic)
+            if (Dagger)
             {
-                SetX(canv);
-                Engine.MakeMove(i * 3 + j, TicTacToe.Dagger);
+                if (!withComp)
+                {
+                    SetX(canv);
+                    Engine.MakeMove(i * 3 + j, TicTacToe.Dagger);
+                }
             }
             else
             {
                 SetZero(canv);
                 Engine.MakeMove(i * 3 + j, TicTacToe.Toe);
             }
-            Tic = !Tic;
+            Dagger = !Dagger;
         }
 
         private void SetZero(Canvas canvas)

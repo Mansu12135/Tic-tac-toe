@@ -31,10 +31,16 @@ namespace ApplicationLayer
 
         internal (TicTacToe, int) OnPlayerMadeMove(int cell, TicTacToe side)
         {
-            Desk[cell] = side;
-            if (side == ComputerSide)
+            if (cell >= 0 || cell == Int32.MinValue)
             {
-               return (ComputerSide, Desk.MakeMoveForPlayer(ComputerSide));
+                if (cell >= 0)
+                {
+                    Desk[cell] = side;
+                }
+                if (ComputerSide != TicTacToe.Empty)
+                {
+                    return (ComputerSide, Desk.MakeMoveForPlayer(ComputerSide));
+                }
             }
             return (TicTacToe.Empty, -1);
         }

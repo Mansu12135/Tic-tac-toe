@@ -33,32 +33,24 @@ namespace Tic_tac_toe
             this.InitializeComponent();
         }
         private PlayingField Field;
+        private bool onePlayer = true;
         
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            // Table.Child = null;
-           // Field = new PlayingField(this, 3, Table.ActualWidth - Table.BorderThickness.Left * 2);
-          //  Table.Child = Field.Draw();
-        }
-
         private void BasicMode_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
+            onePlayer = true;
+            NewGame();
+        }
+        private void NewGame()
+        {
             ContainerFirstPage.Visibility = Visibility.Collapsed;
-            //Table.Visibility = Visibility.Visible;
-            //Table.HorizontalAlignment = HorizontalAlignment.Stretch;
-            //Table.VerticalAlignment = VerticalAlignment.Stretch;
-            Field = new PlayingField(this, 3, Table.ActualWidth - Table.BorderThickness.Left * 2,false);
+            Field = new PlayingField(this, 3, Table.ActualWidth - Table.BorderThickness.Left * 2, onePlayer);
             Field.OnGameCompleted -= Field_OnGameCompleted;
             Field.OnGameCompleted += Field_OnGameCompleted;
             Table.Child = Field.Draw();
         }
-
         private void Field_OnGameCompleted()
         {
-            Field = new PlayingField(this, 3, Table.ActualWidth - Table.BorderThickness.Left * 2, false);
-            Field.OnGameCompleted -= Field_OnGameCompleted;
-            Field.OnGameCompleted += Field_OnGameCompleted;
-            Table.Child = Field.Draw();
+           NewGame();
         }
 
         private void Border_Loaded(object sender, RoutedEventArgs e)
@@ -75,28 +67,19 @@ namespace Tic_tac_toe
 
         private void TextBlock_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
-            ContainerFirstPage.Visibility = Visibility.Collapsed;
-            //Table.Visibility = Visibility.Visible;
-            //Table.HorizontalAlignment = HorizontalAlignment.Stretch;
-            //Table.VerticalAlignment = VerticalAlignment.Stretch;
-            Field = new PlayingField(this, 3, Table.ActualWidth - Table.BorderThickness.Left * 2,true);
-            Field.OnGameCompleted -= Field_OnGameCompleted1;
-            Field.OnGameCompleted += Field_OnGameCompleted1; ;
-            Table.Child = Field.Draw();
+            onePlayer = false;
+            NewGame();
         }
 
-        private void Field_OnGameCompleted1()
-        {
-            Field = new PlayingField(this, 3, Table.ActualWidth - Table.BorderThickness.Left * 2, true);
-            Field.OnGameCompleted -= Field_OnGameCompleted1;
-            Field.OnGameCompleted += Field_OnGameCompleted1;
-            Table.Child = Field.Draw();
-        }
-
-        private void Image_PointerPressed(object sender, PointerRoutedEventArgs e)
+        private void TextBlock_PointerPressed_1(object sender, PointerRoutedEventArgs e)
         {
             ContainerFirstPage.Visibility = Visibility.Visible;
             Field = null;
+        }
+
+        private void TextBlock_PointerPressed_2(object sender, PointerRoutedEventArgs e)
+        {
+            NewGame();
         }
     }
 }

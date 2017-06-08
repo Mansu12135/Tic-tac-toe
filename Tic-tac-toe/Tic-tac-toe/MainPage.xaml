@@ -142,14 +142,18 @@
             <ColumnDefinition Width="199*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="19*"/>
-            <RowDefinition Height="137*"/>
-            <RowDefinition Height="24*"/>
+            <RowDefinition Height="67*"/>
+            <RowDefinition Height="413*"/>
+            <RowDefinition Height="160*"/>
         </Grid.RowDefinitions>
-        <Border x:Name="ContainerFirstPage" Grid.RowSpan="3" Grid.ColumnSpan="3" Background="White" Canvas.ZIndex="2">
+        <Border Margin="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Foreground="White" FontSize="36" FontFamily="Cambria" FontStyle="Italic" FontWeight="Bold">0 : 0</TextBlock>
+
+        </Border>
+        <Border x:Name="ContainerFirstPage" Grid.RowSpan="3" Grid.ColumnSpan="3" Background="White" Canvas.ZIndex="2" Visibility="Collapsed">
             <Border Margin="10" BorderBrush="#FFFFF752" BorderThickness="2" CornerRadius="20" Background="#38FDFDB3">
                 <Border  Margin="4" BorderBrush="#FFFFF752" BorderThickness="2" CornerRadius="20">
-                    
+
                     <Border  Margin="5"  CornerRadius="10" Loaded="Border_Loaded" BorderThickness="2" BorderBrush="#7C8EA5E0">
                         <Border.Background>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -167,17 +171,17 @@
                                 </LinearGradientBrush>
                             </Border.BorderBrush>
                             <Border x:Name="b1"  Margin="0" BorderThickness="10,10,10,0" CornerRadius="20,20,0,0">
-                            <Border.Resources>
-                                <Storyboard x:Name="colorStoryboard">
+                                <Border.Resources>
+                                    <Storyboard x:Name="colorStoryboard">
 
-                                    <ColorAnimationUsingKeyFrames Storyboard.TargetName="b1" 
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="b1" 
       Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)">
 
-                                        <!-- Go from green to red in the first 2 seconds. LinearColorKeyFrame creates
+                                            <!-- Go from green to red in the first 2 seconds. LinearColorKeyFrame creates
                 a smooth, linear animation between values. -->
-                                        <LinearColorKeyFrame Value="Blue" KeyTime="00:00:02" />
+                                            <LinearColorKeyFrame Value="Blue" KeyTime="00:00:02" />
 
-                                        <!-- In the next half second, go to yellow. DiscreteColorKeyFrame creates a 
+                                            <!-- In the next half second, go to yellow. DiscreteColorKeyFrame creates a 
                 sudden jump between values. -->
                                             <LinearColorKeyFrame Value="Yellow" KeyTime="00:00:2.5" />
                                             <LinearColorKeyFrame Value="Green" KeyTime="00:00:4.5" />
@@ -186,116 +190,116 @@
                                             <!-- In the final 2 seconds of the animation, go from yellow back to green. SplineColorKeyFrame 
                 creates a variable transition between values depending on the KeySpline property. In this example,
                 the animation starts off slow but toward the end of the time segment, it speeds up exponentially.-->
-                                        <!--<SplineColorKeyFrame Value="Green" KeyTime="00:00:10.5" KeySpline="0.6,0.0 0.9,0.00" />-->
+                                            <!--<SplineColorKeyFrame Value="Green" KeyTime="00:00:10.5" KeySpline="0.6,0.0 0.9,0.00" />-->
 
-                                    </ColorAnimationUsingKeyFrames>
-                                </Storyboard>
-                                <Storyboard x:Name="colorStoryboard2">
-                                    <ColorAnimation Storyboard.TargetName="mySolidColorBrush2"
+                                        </ColorAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                    <Storyboard x:Name="colorStoryboard2">
+                                        <ColorAnimation Storyboard.TargetName="mySolidColorBrush2"
         Storyboard.TargetProperty="Color" From="Red" To="Blue" Duration="0:0:4"/>
-                                </Storyboard>
-                            </Border.Resources>
+                                    </Storyboard>
+                                </Border.Resources>
 
-                            <Border.BorderBrush>
-                                <SolidColorBrush x:Name="mySolidColorBrush2" Color="Yellow" />
-                            </Border.BorderBrush>
-                            <Border  Margin="0" BorderThickness="4,4,6,0" CornerRadius="10,10,0,0">
                                 <Border.BorderBrush>
-                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                        <GradientStop Color="#56A0FF41" Offset="0"/>
-                                        <GradientStop Color="#57FFFF00" Offset="1"/>
-                                    </LinearGradientBrush>
+                                    <SolidColorBrush x:Name="mySolidColorBrush2" Color="Yellow" />
                                 </Border.BorderBrush>
-                                <Border  Margin="3" BorderBrush="#FFFFFF02" BorderThickness="1,1,1,0" CornerRadius="20,20,0,0">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="161*"/>
-                                            <ColumnDefinition Width="540*"/>
-                                            <ColumnDefinition Width="178*"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="127*"/>
-                                            <RowDefinition Height="130*"/>
-                                        </Grid.RowDefinitions>
-                                        <Border Grid.ColumnSpan="3" Margin="0,0,0.4,259.6" Grid.RowSpan="2">
-                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="72" FontFamily="Buxton Sketch" FontWeight="Bold">
-                                                <TextBlock.Foreground>
-                                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                                        <GradientStop Color="#FFF19970" Offset="0.311"/>
-                                                        <GradientStop Color="#FFF5F531" Offset="0.516"/>
-                                                        <GradientStop Color="#FFF10000" Offset="0"/>
-                                                        <GradientStop Color="#FF521180" Offset="1"/>
-                                                    </LinearGradientBrush>
-                                                </TextBlock.Foreground> TicTacToe</TextBlock>
-                                        </Border>
-                                        <Border Grid.Row="1" Margin="5,0" Grid.Column="1" BorderBrush="White" BorderThickness="1" CornerRadius="20">
-                                            <Border Margin="0" BorderThickness="3" CornerRadius="20" >
-                                                <Border.Background>
-                                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                                        <GradientStop Color="#FF2664A2" Offset="0"/>
-                                                        <GradientStop Color="#FF4886C5" Offset="0.189"/>
-                                                        <GradientStop Color="#FF0E3155" Offset="1"/>
-                                                    </LinearGradientBrush>
-                                                </Border.Background>
-                                                <Border.BorderBrush>
-                                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                                        <GradientStop Color="#FF575757" Offset="0"/>
-                                                        <GradientStop Color="#FF727272" Offset="1"/>
-                                                        <GradientStop Color="#FFA4A4A4" Offset="0.389"/>
-                                                    </LinearGradientBrush>
-                                                </Border.BorderBrush>
-                                                <StackPanel>
-                                                    <Border Margin="20,25,20,0" BorderBrush="#EBFFFFFF" BorderThickness="4,5" CornerRadius="10" Background="White">
-                                                        <Border Margin="0" BorderThickness="1,1,0,0" CornerRadius="10" BorderBrush="Black" >
-                                                            <Border Margin="0" BorderThickness="1" CornerRadius="10" BorderBrush="#FF898989" >
-                                                                <Border.Background>
-                                                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                                                        <GradientStop Color="#FF0C84B1" Offset="0"/>
-                                                                        <GradientStop Color="#FF27739D" Offset="1"/>
-                                                                        <GradientStop Color="#FF5CCEF1" Offset="0.213"/>
-                                                                        <GradientStop Color="#FF2EB7E4" Offset="0.352"/>
-                                                                        <GradientStop Color="#FF1F78A4" Offset="0.889"/>
-                                                                        <GradientStop Color="#FF1F8ABB" Offset="0.84"/>
-                                                                    </LinearGradientBrush>
-                                                                </Border.Background>
-                                                                    <TextBlock x:Name="BasicMode" FontSize="48" FontFamily="Calibri Light" Padding="0,10" TextAlignment="Center" PointerPressed="BasicMode_PointerPressed">One player</TextBlock>
-                                                            </Border>
-                                                        </Border>
-                                                    </Border>
-                                                    <Border Margin="20,25,20,0" BorderBrush="#EBFFFFFF" BorderThickness="4,5" CornerRadius="10" Background="White">
-                                                        <Border Margin="0" BorderThickness="1,1,0,0" CornerRadius="10" BorderBrush="Black" >
-                                                            <Border Margin="0" BorderThickness="1" CornerRadius="10" BorderBrush="#FF898989" >
-                                                                <Border.Background>
-                                                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                                                        <GradientStop Color="#FF0C84B1" Offset="0"/>
-                                                                        <GradientStop Color="#FF27739D" Offset="1"/>
-                                                                        <GradientStop Color="#FF5CCEF1" Offset="0.213"/>
-                                                                        <GradientStop Color="#FF2EB7E4" Offset="0.352"/>
-                                                                        <GradientStop Color="#FF1F78A4" Offset="0.889"/>
-                                                                        <GradientStop Color="#FF1F8ABB" Offset="0.84"/>
-                                                                    </LinearGradientBrush>
-                                                                </Border.Background>
-                                                                    <TextBlock FontSize="48" FontFamily="Calibri Light" Padding="0,10" TextAlignment="Center" PointerPressed="TextBlock_PointerPressed">Two player</TextBlock>
-                                                            </Border>
-                                                        </Border>
-                                                    </Border>
-
-
-
-                                                </StackPanel>
+                                <Border  Margin="0" BorderThickness="4,4,6,0" CornerRadius="10,10,0,0">
+                                    <Border.BorderBrush>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#56A0FF41" Offset="0"/>
+                                            <GradientStop Color="#57FFFF00" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Border.BorderBrush>
+                                    <Border  Margin="3" BorderBrush="#FFFFFF02" BorderThickness="1,1,1,0" CornerRadius="20,20,0,0">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="161*"/>
+                                                <ColumnDefinition Width="540*"/>
+                                                <ColumnDefinition Width="178*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="127*"/>
+                                                <RowDefinition Height="130*"/>
+                                            </Grid.RowDefinitions>
+                                            <Border Grid.ColumnSpan="3" Margin="0,0,0.4,259.6" Grid.RowSpan="2">
+                                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="72" FontFamily="Buxton Sketch" FontWeight="Bold">
+                                                    <TextBlock.Foreground>
+                                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                            <GradientStop Color="#FFF19970" Offset="0.311"/>
+                                                            <GradientStop Color="#FFF5F531" Offset="0.516"/>
+                                                            <GradientStop Color="#FFF10000" Offset="0"/>
+                                                            <GradientStop Color="#FF521180" Offset="1"/>
+                                                        </LinearGradientBrush>
+                                                    </TextBlock.Foreground> TicTacToe</TextBlock>
                                             </Border>
-                                        </Border>
-                                    </Grid>
+                                            <Border Grid.Row="1" Margin="5,0" Grid.Column="1" BorderBrush="White" BorderThickness="1" CornerRadius="20">
+                                                <Border Margin="0" BorderThickness="3" CornerRadius="20" >
+                                                    <Border.Background>
+                                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                            <GradientStop Color="#FF2664A2" Offset="0"/>
+                                                            <GradientStop Color="#FF4886C5" Offset="0.189"/>
+                                                            <GradientStop Color="#FF0E3155" Offset="1"/>
+                                                        </LinearGradientBrush>
+                                                    </Border.Background>
+                                                    <Border.BorderBrush>
+                                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                            <GradientStop Color="#FF575757" Offset="0"/>
+                                                            <GradientStop Color="#FF727272" Offset="1"/>
+                                                            <GradientStop Color="#FFA4A4A4" Offset="0.389"/>
+                                                        </LinearGradientBrush>
+                                                    </Border.BorderBrush>
+                                                    <StackPanel>
+                                                        <Border Margin="20,25,20,0" BorderBrush="#EBFFFFFF" BorderThickness="4,5" CornerRadius="10" Background="White">
+                                                            <Border Margin="0" BorderThickness="1,1,0,0" CornerRadius="10" BorderBrush="Black" >
+                                                                <Border Margin="0" BorderThickness="1" CornerRadius="10" BorderBrush="#FF898989" >
+                                                                    <Border.Background>
+                                                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                                            <GradientStop Color="#FF0C84B1" Offset="0"/>
+                                                                            <GradientStop Color="#FF27739D" Offset="1"/>
+                                                                            <GradientStop Color="#FF5CCEF1" Offset="0.213"/>
+                                                                            <GradientStop Color="#FF2EB7E4" Offset="0.352"/>
+                                                                            <GradientStop Color="#FF1F78A4" Offset="0.889"/>
+                                                                            <GradientStop Color="#FF1F8ABB" Offset="0.84"/>
+                                                                        </LinearGradientBrush>
+                                                                    </Border.Background>
+                                                                    <TextBlock x:Name="BasicMode" FontSize="48" FontFamily="Calibri Light" Padding="0,10" TextAlignment="Center" PointerPressed="BasicMode_PointerPressed">One player</TextBlock>
+                                                                </Border>
+                                                            </Border>
+                                                        </Border>
+                                                        <Border Margin="20,25,20,0" BorderBrush="#EBFFFFFF" BorderThickness="4,5" CornerRadius="10" Background="White">
+                                                            <Border Margin="0" BorderThickness="1,1,0,0" CornerRadius="10" BorderBrush="Black" >
+                                                                <Border Margin="0" BorderThickness="1" CornerRadius="10" BorderBrush="#FF898989" >
+                                                                    <Border.Background>
+                                                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                                            <GradientStop Color="#FF0C84B1" Offset="0"/>
+                                                                            <GradientStop Color="#FF27739D" Offset="1"/>
+                                                                            <GradientStop Color="#FF5CCEF1" Offset="0.213"/>
+                                                                            <GradientStop Color="#FF2EB7E4" Offset="0.352"/>
+                                                                            <GradientStop Color="#FF1F78A4" Offset="0.889"/>
+                                                                            <GradientStop Color="#FF1F8ABB" Offset="0.84"/>
+                                                                        </LinearGradientBrush>
+                                                                    </Border.Background>
+                                                                    <TextBlock FontSize="48" FontFamily="Calibri Light" Padding="0,10" TextAlignment="Center" PointerPressed="TextBlock_PointerPressed">Two player</TextBlock>
+                                                                </Border>
+                                                            </Border>
+                                                        </Border>
+
+
+
+                                                    </StackPanel>
+                                                </Border>
+                                            </Border>
+                                        </Grid>
+                                    </Border>
                                 </Border>
                             </Border>
                         </Border>
-                    </Border>
                     </Border>
                 </Border>
             </Border>
 
         </Border>
-        <Border x:Name="Table" Background="#FF002B44" Height="{Binding ElementName=Table, Path=ActualWidth}" Margin="0" Grid.Row="1" Grid.Column="1" BorderThickness="3">
+        <Border x:Name="Table" Background="#FF002B44" Margin="0.8,63.8,335,-2" Grid.Row="1" Grid.Column="1" BorderThickness="3" Grid.ColumnSpan="2">
             <Border.BorderBrush>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF506380" Offset="1"/>
@@ -480,10 +484,12 @@
             </StackPanel>-->
 
         </Border>
-        <Border HorizontalAlignment="Left" VerticalAlignment="Top">
-            <Image Source="Assets/go-back-icon.yellow.png" PointerPressed="Image_PointerPressed" Width="54"></Image>
+        <Border HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,16,0">
+            <TextBlock Foreground="White" FontSize="24" FontFamily="Cambria" FontStyle="Italic" FontWeight="Bold" PointerPressed="TextBlock_PointerPressed_1">back</TextBlock>
         </Border>
-
+        <Border HorizontalAlignment="Left" VerticalAlignment="Center" Margin="16,0,0,0" Grid.Column="2">
+            <TextBlock Foreground="White" FontSize="24" FontFamily="Cambria" FontStyle="Italic" FontWeight="Bold" PointerPressed="TextBlock_PointerPressed_2">new game</TextBlock>
+        </Border>
         <!--<Button Content="3*3" HorizontalAlignment="Left" Margin="20,4,0,3" VerticalAlignment="Stretch" Width="193" Background="#FFA3D8DA" FontSize="36" FontFamily="Georgia" Click="Button_Click"/>
 
         <Canvas Width="50" Height="50"

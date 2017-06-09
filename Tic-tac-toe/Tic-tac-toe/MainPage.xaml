@@ -138,7 +138,9 @@
         </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="201*"/>
-            <ColumnDefinition Width="350"/>
+            <ColumnDefinition Width="113"/>
+            <ColumnDefinition Width="117.6"/>
+            <ColumnDefinition Width="119.4"/>
             <ColumnDefinition Width="199*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -146,11 +148,110 @@
             <RowDefinition Height="413*"/>
             <RowDefinition Height="160*"/>
         </Grid.RowDefinitions>
-        <Border Margin="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock Foreground="White" FontSize="36" FontFamily="Cambria" FontStyle="Italic" FontWeight="Bold">0 : 0</TextBlock>
+        <Border x:Name="MyFadingText"  Height="{Binding ElementName=Table, Path=ActualWidth}" Width="{Binding ElementName=Table, Path=ActualWidth}" Margin="0"  Grid.ColumnSpan="3" BorderThickness="10" BorderBrush="#A0C3C3C3" Padding="10" Grid.Column="1" Grid.Row="1" Opacity="0">
+            <!--<Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#B2E2E2E2" Offset="0.007"/>
+                    <GradientStop Color="#B3C9C9C9" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>-->
+            <TextBlock x:Name="WinBlock"  HorizontalAlignment="Center" VerticalAlignment="Center"  FontFamily="Segoe UI Black" FontSize="48" FontWeight="Bold" FontStyle="Italic" Text="Dagger win!!!" Margin="0" >
+                <TextBlock.Resources>
+                    <Storyboard x:Name="sizeStoryboard">
+                        <DoubleAnimation
+                                 Storyboard.TargetName="MyFadingText" 
+                                Storyboard.TargetProperty="(Border.Opacity)"
+                                Duration="0:0:1.5" AutoReverse="True"
+                                From="0" To="1" >
+
+                        </DoubleAnimation>
+
+                        <!--<ColorAnimationUsingKeyFrames
+                                Storyboard.TargetProperty="Fill.GradientStops[1].Color"
+                                Duration="0:0:3" RepeatBehavior="Forever" AutoReverse="True">
+
+                                <ColorAnimationUsingKeyFrames.KeyFrames>
+                                    <LinearColorKeyFrame KeyTime="0:0:1" Value="Green" />
+                                    <LinearColorKeyFrame KeyTime="0:0:2" Value="Red" />
+                                </ColorAnimationUsingKeyFrames.KeyFrames>
+                            </ColorAnimationUsingKeyFrames>-->
+                    </Storyboard>
+
+                </TextBlock.Resources>
+                <TextBlock.Foreground>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF23FF00" Offset="0"/>
+                        <GradientStop Color="Yellow" Offset="1"/>
+                    </LinearGradientBrush>
+                </TextBlock.Foreground>
+            </TextBlock>
 
         </Border>
-        <Border x:Name="ContainerFirstPage" Grid.RowSpan="3" Grid.ColumnSpan="3" Background="White" Canvas.ZIndex="2" Visibility="Collapsed">
+        <Border HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1">
+            <Canvas Margin="0,-22,0,0">
+                <Path x:Name="x1" StrokeStartLineCap="Round"
+              StrokeEndLineCap="Round"
+              StrokeThickness="9"
+              RenderTransformOrigin="0.5,0.8571"
+              Data="M 10,8 c 30,25 25,30 30,40">
+                    <Path.Stroke>
+                        <LinearGradientBrush StartPoint="1,0" EndPoint="0,0">
+                            <GradientStop Color="#FFBBBBBB" Offset="0"/>
+                            <GradientStop Color="White" Offset="0.452"/>
+                            <GradientStop Color="#E5FFFFFF"/>
+                            <GradientStop Color="#E5FFFFFF" Offset="0.856"/>
+                        </LinearGradientBrush>
+                    </Path.Stroke>
+                    <Path.RenderTransform>
+                        <RotateTransform x:Name="_rot2" />
+                    </Path.RenderTransform>
+
+                </Path>
+                <Path x:Name="x2" StrokeStartLineCap="Round"
+              StrokeEndLineCap="Round"
+              StrokeThickness="9"
+              RenderTransformOrigin="0.5,0.8571"
+              Data="M 40,5 c -8,20 -20,35 -32,38">
+                    <Path.Stroke>
+                        <LinearGradientBrush StartPoint="1,0" EndPoint="0,0">
+                            <GradientStop Color="#FFBBBBBB" Offset="0"/>
+                            <GradientStop Color="#ACAAA0A0" Offset="0.997"/>
+                            <GradientStop Color="White" Offset="0.438"/>
+                            <GradientStop Color="#E5FAFAFA" Offset="0.743"/>
+                            <GradientStop Color="#E3FFFFFF" Offset="0.099"/>
+                        </LinearGradientBrush>
+                    </Path.Stroke>
+                    <Path.RenderTransform>
+                        <RotateTransform x:Name="_rot3" />
+                    </Path.RenderTransform>
+                </Path>
+            </Canvas>
+
+        </Border>
+        <Border HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="3" Margin="19,0,0,0">
+            <Canvas Margin="0,-22,0,0">
+                <Path x:Name="Zero" StrokeStartLineCap="Round"
+              StrokeEndLineCap="Round"
+              StrokeThickness="9"
+              Data="M 20,8 c 30,-2 30,25 10,30 c -20,5 -35,-20 -13,-29">
+                    <Path.Stroke>
+                        <LinearGradientBrush StartPoint="1,0" EndPoint="0,0">
+                            <GradientStop Color="#FFBBBBBB" Offset="0"/>
+                            <GradientStop Color="White" Offset="0.452"/>
+                            <GradientStop Color="#E5FFFFFF"/>
+                            <GradientStop Color="#E5FFFFFF" Offset="0.856"/>
+                        </LinearGradientBrush>
+                    </Path.Stroke>
+
+
+                </Path>
+            </Canvas>
+
+        </Border>
+        <Border Margin="0" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock x:Name="CountWin" Foreground="White" FontSize="36" FontFamily="Cambria" FontStyle="Italic" FontWeight="Bold">0 : 0</TextBlock>
+        </Border>
+        <Border x:Name="ContainerFirstPage" Grid.RowSpan="3" Grid.ColumnSpan="5" Background="White" Canvas.ZIndex="2">
             <Border Margin="10" BorderBrush="#FFFFF752" BorderThickness="2" CornerRadius="20" Background="#38FDFDB3">
                 <Border  Margin="4" BorderBrush="#FFFFF752" BorderThickness="2" CornerRadius="20">
 
@@ -175,7 +276,7 @@
                                     <Storyboard x:Name="colorStoryboard">
 
                                         <ColorAnimationUsingKeyFrames Storyboard.TargetName="b1" 
-      Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)">
+      Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" AutoReverse="True">
 
                                             <!-- Go from green to red in the first 2 seconds. LinearColorKeyFrame creates
                 a smooth, linear animation between values. -->
@@ -222,13 +323,13 @@
                                                 <RowDefinition Height="130*"/>
                                             </Grid.RowDefinitions>
                                             <Border Grid.ColumnSpan="3" Margin="0,0,0.4,259.6" Grid.RowSpan="2">
-                                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="72" FontFamily="Buxton Sketch" FontWeight="Bold">
+                                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="72" FontFamily="Cambria" FontWeight="Bold" RenderTransformOrigin="0.5,0.5">
                                                     <TextBlock.Foreground>
                                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                                            <GradientStop Color="#FFF19970" Offset="0.311"/>
-                                                            <GradientStop Color="#FFF5F531" Offset="0.516"/>
-                                                            <GradientStop Color="#FFF10000" Offset="0"/>
-                                                            <GradientStop Color="#FF521180" Offset="1"/>
+                                                            <GradientStop Color="#FFF7C6AE" Offset="0.631"/>
+                                                            <GradientStop Color="#FFFFFFB8" Offset="0.422"/>
+                                                            <GradientStop Color="#FFFFE3E3" Offset="1"/>
+                                                            <GradientStop Color="#FFF9FFD2"/>
                                                         </LinearGradientBrush>
                                                     </TextBlock.Foreground> TicTacToe</TextBlock>
                                             </Border>
@@ -299,7 +400,7 @@
             </Border>
 
         </Border>
-        <Border x:Name="Table" Background="#FF002B44" Margin="0.8,63.8,335,-2" Grid.Row="1" Grid.Column="1" BorderThickness="3" Grid.ColumnSpan="2">
+        <Border x:Name="Table" Height="{Binding ElementName=Table, Path=ActualWidth}" Margin="0"  Background="#FF002B44" Grid.Row="1" Grid.Column="1" BorderThickness="3" Grid.ColumnSpan="3">
             <Border.BorderBrush>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF506380" Offset="1"/>
@@ -484,10 +585,10 @@
             </StackPanel>-->
 
         </Border>
-        <Border HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,16,0">
+        <Border HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,19,16.2,19.2">
             <TextBlock Foreground="White" FontSize="24" FontFamily="Cambria" FontStyle="Italic" FontWeight="Bold" PointerPressed="TextBlock_PointerPressed_1">back</TextBlock>
         </Border>
-        <Border HorizontalAlignment="Left" VerticalAlignment="Center" Margin="16,0,0,0" Grid.Column="2">
+        <Border HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15.8,19,0,19.2" Grid.Column="4">
             <TextBlock Foreground="White" FontSize="24" FontFamily="Cambria" FontStyle="Italic" FontWeight="Bold" PointerPressed="TextBlock_PointerPressed_2">new game</TextBlock>
         </Border>
         <!--<Button Content="3*3" HorizontalAlignment="Left" Margin="20,4,0,3" VerticalAlignment="Stretch" Width="193" Background="#FFA3D8DA" FontSize="36" FontFamily="Georgia" Click="Button_Click"/>

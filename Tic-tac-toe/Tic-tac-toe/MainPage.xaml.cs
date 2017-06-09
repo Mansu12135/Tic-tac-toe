@@ -46,21 +46,64 @@ namespace Tic_tac_toe
             Field = new PlayingField(this, 3, Table.ActualWidth - Table.BorderThickness.Left * 2, onePlayer);
             Field.OnGameCompleted -= Field_OnGameCompleted;
             Field.OnGameCompleted += Field_OnGameCompleted;
+            Field.OnMakeGo -= Field_OnMakeGo;
+            Field.OnMakeGo += Field_OnMakeGo;
             Table.Child = Field.Draw();
         }
-        private void Field_OnGameCompleted()
+
+        private void Field_OnMakeGo(bool dagger)
         {
-           NewGame();
+            if (dagger)
+            {
+                var stroke = ((LinearGradientBrush)this.Resources["colorX1"]);
+                x1.Stroke = stroke;
+                x2.Stroke = stroke;
+                Zero.Stroke = new SolidColorBrush(Colors.Gray);
+            }
+            else
+            {
+                var stroke = ((LinearGradientBrush)this.Resources["colorZero"]);
+                x1.Stroke = new SolidColorBrush(Colors.Gray);
+                x2.Stroke = new SolidColorBrush(Colors.Gray);
+                Zero.Stroke = stroke;
+            }
+        }
+        int countZ = 0;
+        int countX = 0;
+        private void Field_OnGameCompleted(TicTacToe winner)
+        {
+            Table.Child = null;
+            if (winner== TicTacToe.Dagger)
+            {
+                countX++;
+                WinBlock.Text = "Dagger win !";
+            }
+            else if(winner== TicTacToe.Toe)
+            {
+                countZ++;
+                WinBlock.Text = "Toe win !";
+            }
+            else
+            {
+                countX++;
+                countZ++;
+                WinBlock.Text = "1-1";
+            }
+            CountWin.Text = countX + " : " + countZ;
+            Canvas.SetZIndex(MyFadingText, 2);
+            sizeStoryboard.Begin();
+            sizeStoryboard.Completed += SizeStoryboard_Completed;
+          //  NewGame();
+        }
+
+        private void SizeStoryboard_Completed(object sender, object e)
+        {
+            
+            Canvas.SetZIndex(MyFadingText, 0);
+            NewGame();
         }
 
         private void Border_Loaded(object sender, RoutedEventArgs e)
-        {
-            colorStoryboard.Begin();
-            colorStoryboard.Completed += ColorStoryboard_Completed;
-
-        }
-
-        private void ColorStoryboard_Completed(object sender, object e)
         {
             colorStoryboard.Begin();
         }
@@ -74,6 +117,7 @@ namespace Tic_tac_toe
         private void TextBlock_PointerPressed_1(object sender, PointerRoutedEventArgs e)
         {
             ContainerFirstPage.Visibility = Visibility.Visible;
+            colorStoryboard.Begin();
             Field = null;
         }
 

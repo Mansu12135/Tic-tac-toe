@@ -20,6 +20,18 @@ namespace Tic_tac_toe
         private double Width;
         private GameEngine Engine;
         bool withComp = false;
+        List<Canvas> canvases = new List<Canvas>();
+        bool dagger;
+        public bool Dagger
+        {
+            get { return dagger; }
+            set
+            {
+                OnMakeGo(value);
+                dagger = value;
+            }
+        }
+
         public PlayingField(MainPage page, int size, double width, bool withComp)
         {
             Page = page;
@@ -58,12 +70,13 @@ namespace Tic_tac_toe
 
         private void Engine_OnGameCompleted(string winnerName, TicTacToe winnerSide)
         {
-            OnGameCompleted?.Invoke();
+            OnGameCompleted?.Invoke(winnerSide);
             //game complete
         }
-        List<Canvas> canvases = new List<Canvas>();
+       
         public StackPanel Draw()
         {
+            Dagger = true;
             var sideSize = Width / Size;
             var verticalPanel = new StackPanel();
             verticalPanel.Loaded += VerticalPanel_Loaded;
@@ -163,9 +176,11 @@ namespace Tic_tac_toe
         {
             Engine.MakeMove(Int32.MinValue, TicTacToe.Toe);
         }
-        public delegate void GameStatusHandler();
-
+        public delegate void GameStatusHandler(TicTacToe side);
         public event GameStatusHandler OnGameCompleted;
+
+        public delegate void MakeGoHandler(bool dagger);
+        public event MakeGoHandler OnMakeGo;
         private void SetShadow(Vector3 offset, Canvas c, double size)
         {
             var hostVisual = ElementCompositionPreview.GetElementVisual(c);
@@ -188,8 +203,7 @@ namespace Tic_tac_toe
             //// Add the shadow as a child of the host in the visual tree
             ElementCompositionPreview.SetElementChildVisual(c, shadowVisual);
         }
-        public bool Dagger = false;
-        string point;
+
         private void Canv_PointerPressed(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
         {
             var canv = sender as Canvas;
@@ -199,9 +213,6 @@ namespace Tic_tac_toe
             {
                 return;
             }
-           
-            var pp = e.GetCurrentPoint(canv);
-            point += "'" + pp.Position.X + "-" + pp.Position.Y + "' ";
             var split = canv.Tag.ToString().Split('-');
             int i = Convert.ToInt32(split[0]);
             int j = Convert.ToInt32(split[1]);

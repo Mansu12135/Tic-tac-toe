@@ -31,12 +31,14 @@ namespace ApplicationLayer
             {
                 Progress[index] = value;
                 Operator.UpdateDesk(index, value);
-                if (!Progress.ContainsValue(TicTacToe.Empty)) { OnGameComplete(TicTacToe.Empty);
-                    return;
-                }
                 if (PlayerWays[value].Ways.Any() && PlayerWays[value].Ways.Max(item => item.Count) == 3)
                 {
                     OnGameComplete(value);
+                }
+                if (!Progress.ContainsValue(TicTacToe.Empty))
+                {
+                    OnGameComplete(TicTacToe.Empty);
+                    return;
                 }
             }
         }

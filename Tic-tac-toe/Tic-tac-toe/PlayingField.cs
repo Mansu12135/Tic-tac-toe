@@ -35,7 +35,7 @@ namespace Tic_tac_toe
         public PlayingField(MainPage page, int size, double width, bool withComp)
         {
             Page = page;
-            withComp = withComp;
+            this.withComp = withComp;
             Size = size;
             Width = width;
             Engine =
@@ -241,39 +241,67 @@ namespace Tic_tac_toe
             path1.Stroke = stroke;
             path1.StrokeStartLineCap = PenLineCap.Round;
             path1.StrokeEndLineCap = PenLineCap.Round;
-            path1.StrokeThickness = 9;
+            path1.StrokeThickness = 3;
             var geometryGroup1 = new GeometryGroup();
             var pathGeometry1 = new PathGeometry();
             var pathFigureCollection1 = new PathFigureCollection();
             var pathFigure1 = new PathFigure();
             pathFigure1.IsClosed = true;
-            pathFigure1.StartPoint = new Windows.Foundation.Point(20, 8);
+            //pathFigure1.StartPoint = new Windows.Foundation.Point(20, 8);
+            pathFigure1.StartPoint = new Windows.Foundation.Point(10, 4);
+
             pathFigureCollection1.Add(pathFigure1);
             pathGeometry1.Figures = pathFigureCollection1;
 
             var pathSegmentCollection1 = new PathSegmentCollection();
+            //var pathSegment1 = new BezierSegment();
+            //pathSegment1.Point1 = new Point(28, 8);
+            //pathSegment1.Point2 = new Point(38.98, 11.99);
+            //pathSegment1.Point3 = new Point(40.97, 23.97);
+            //pathSegmentCollection1.Add(pathSegment1);
+
+            //var pathSegment2 = new BezierSegment();
+            //pathSegment2.Point1 = new Point(39.96, 31.98);
+            //pathSegment2.Point2 = new Point(29.98, 38.98);
+            //pathSegment2.Point3 = new Point(18.98, 36.99);
+            //pathSegmentCollection1.Add(pathSegment2);
+
+            //var pathSegment3 = new BezierSegment();
+            //pathSegment3.Point1 = new Point(11.99, 35.98);
+            //pathSegment3.Point2 = new Point(5.98, 29.99);
+            //pathSegment3.Point3 = new Point(5.98, 20.98);
+            //pathSegmentCollection1.Add(pathSegment3);
+
+            //var pathSegment4 = new BezierSegment();
+            //pathSegment4.Point1 = new Point(7.97, 14.97);
+            //pathSegment4.Point2 = new Point(11.97, 8.97);
+            //pathSegment4.Point3 = new Point(19.98, 8);
+            //pathSegmentCollection1.Add(pathSegment4);
+            //pathFigure1.Segments = pathSegmentCollection1;
+
+
             var pathSegment1 = new BezierSegment();
-            pathSegment1.Point1 = new Point(28, 8);
-            pathSegment1.Point2 = new Point(38.98, 11.99);
-            pathSegment1.Point3 = new Point(40.97, 23.97);
+            pathSegment1.Point1 = new Point(14, 4);
+            pathSegment1.Point2 = new Point(19, 5);
+            pathSegment1.Point3 = new Point(20, 11);
             pathSegmentCollection1.Add(pathSegment1);
 
             var pathSegment2 = new BezierSegment();
-            pathSegment2.Point1 = new Point(39.96, 31.98);
-            pathSegment2.Point2 = new Point(29.98, 38.98);
-            pathSegment2.Point3 = new Point(18.98, 36.99);
+            pathSegment2.Point1 = new Point(19, 16);
+            pathSegment2.Point2 = new Point(15, 19);
+            pathSegment2.Point3 = new Point(9, 18);
             pathSegmentCollection1.Add(pathSegment2);
 
             var pathSegment3 = new BezierSegment();
-            pathSegment3.Point1 = new Point(11.99, 35.98);
-            pathSegment3.Point2 = new Point(5.98, 29.99);
-            pathSegment3.Point3 = new Point(5.98, 20.98);
+            pathSegment3.Point1 = new Point(6, 18);
+            pathSegment3.Point2 = new Point(2.5, 15);
+            pathSegment3.Point3 = new Point(2.8, 10);
             pathSegmentCollection1.Add(pathSegment3);
 
             var pathSegment4 = new BezierSegment();
-            pathSegment4.Point1 = new Point(7.97, 14.97);
-            pathSegment4.Point2 = new Point(11.97, 8.97);
-            pathSegment4.Point3 = new Point(19.98, 8);
+            pathSegment4.Point1 = new Point(3.5, 7.3);
+            pathSegment4.Point2 = new Point(6, 4.2);
+            pathSegment4.Point3 = new Point(10, 4);
             pathSegmentCollection1.Add(pathSegment4);
             pathFigure1.Segments = pathSegmentCollection1;
 
@@ -281,8 +309,8 @@ namespace Tic_tac_toe
             path1.Data = geometryGroup1;
 
             canvas.Children.Add(path1);
-            Canvas.SetLeft(path1, 20);
-            Canvas.SetTop(path1, 20);
+            Canvas.SetLeft(path1, 2);
+            Canvas.SetTop(path1, 2);
         }
 
 
@@ -293,20 +321,26 @@ namespace Tic_tac_toe
             path1.Stroke = stroke;
             path1.StrokeStartLineCap = PenLineCap.Round;
             path1.StrokeEndLineCap = PenLineCap.Round;
-            path1.StrokeThickness = 9;
+            path1.StrokeThickness = 3;
             var geometryGroup1 = new GeometryGroup();
             var pathGeometry1 = new PathGeometry();
             var pathFigureCollection1 = new PathFigureCollection();
             var pathFigure1 = new PathFigure();
-            pathFigure1.StartPoint = new Windows.Foundation.Point(8.99, 6.98);
+            pathFigure1.StartPoint = new Windows.Foundation.Point(4.3, 3.5);
+            //pathFigure1.StartPoint = new Windows.Foundation.Point(8.99, 6.98);
+
             pathFigureCollection1.Add(pathFigure1);
             pathGeometry1.Figures = pathFigureCollection1;
 
             var pathSegmentCollection1 = new PathSegmentCollection();
             var pathSegment1 = new BezierSegment();
-            pathSegment1.Point1 = new Point(19.99, 15.97);
-            pathSegment1.Point2 = new Point(30.99, 27.99);
-            pathSegment1.Point3 = new Point(38.96, 46.96);
+            //pathSegment1.Point1 = new Point(19.99, 15.97);
+            //pathSegment1.Point2 = new Point(30.99, 27.99);
+            //pathSegment1.Point3 = new Point(38.96, 46.96);
+
+            pathSegment1.Point1 = new Point(10, 8);
+            pathSegment1.Point2 = new Point(15, 14);
+            pathSegment1.Point3 = new Point(19.5, 23.5);
             pathSegmentCollection1.Add(pathSegment1);
             pathFigure1.Segments = pathSegmentCollection1;
             geometryGroup1.Children.Add(pathGeometry1);
@@ -314,22 +348,27 @@ namespace Tic_tac_toe
             var pathGeometry2 = new PathGeometry();
             var pathFigureCollection2 = new PathFigureCollection();
             var pathFigure2 = new PathFigure();
-            pathFigure2.StartPoint = new Windows.Foundation.Point(39.99, 3.99);
+            //pathFigure2.StartPoint = new Windows.Foundation.Point(39.99, 3.99);
+            pathFigure2.StartPoint = new Windows.Foundation.Point(20, 2);
+
             pathFigureCollection2.Add(pathFigure2);
             pathGeometry2.Figures = pathFigureCollection2;
 
             var pathSegmentCollection2 = new PathSegmentCollection();
             var pathSegment2 = new BezierSegment();
-            pathSegment2.Point1 = new Point(31.97, 19.98);
-            pathSegment2.Point2 = new Point(22.98, 31.96);
-            pathSegment2.Point3 = new Point(8.99, 40.99);
+            //pathSegment2.Point1 = new Point(31.97, 19.98);
+            //pathSegment2.Point2 = new Point(22.98, 31.96);
+            //pathSegment2.Point3 = new Point(8.99, 40.99);
+            pathSegment2.Point1 = new Point(16, 10);
+            pathSegment2.Point2 = new Point(11.5, 16);
+            pathSegment2.Point3 = new Point(4.5, 20.5);
             pathSegmentCollection2.Add(pathSegment2);
             pathFigure2.Segments = pathSegmentCollection2;
             geometryGroup1.Children.Add(pathGeometry2);
             path1.Data = geometryGroup1;
             canvas.Children.Add(path1);
-            Canvas.SetLeft(path1, 20);
-            Canvas.SetTop(path1, 20);
+            Canvas.SetLeft(path1, 3);
+            Canvas.SetTop(path1, 3);
         }
     }
 }

@@ -43,7 +43,7 @@ namespace Tic_tac_toe
         private void NewGame()
         {
             ContainerFirstPage.Visibility = Visibility.Collapsed;
-            Field = new PlayingField(this, 3, Table.ActualWidth - Table.BorderThickness.Left * 2, onePlayer);
+            Field = new PlayingField(this, 9, Table.ActualWidth - Table.BorderThickness.Left * 2, onePlayer);
             Field.OnGameCompleted -= Field_OnGameCompleted;
             Field.OnGameCompleted += Field_OnGameCompleted;
             Field.OnMakeGo -= Field_OnMakeGo;

@@ -59,7 +59,6 @@ namespace ApplicationLayer
 
         private static void DoUpdate(Func<int, int> getIndex, TicTacToe value)
         {
-            int winningCount = 0;
             int n = NeedsToWin * 2 + 1;
             var way = new Way();
             for (int k = 0; k < n; k++)

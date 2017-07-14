@@ -43,7 +43,7 @@ namespace Tic_tac_toe
                 {
                     EnemyIsComputer = withComp,
                     EnemySide = TicTacToe.Dagger,
-                    PlayingFieldMode = PlayingFieldMode.Basic
+                    PlayingFieldMode = size==3? PlayingFieldMode.Basic : PlayingFieldMode.Extended
                 });
             Engine.OnGameCompleted += Engine_OnGameCompleted;
             Engine.OnMatrixChanged += Engine_OnMatrixChanged;
@@ -181,28 +181,28 @@ namespace Tic_tac_toe
 
         public delegate void MakeGoHandler(bool dagger);
         public event MakeGoHandler OnMakeGo;
-        private void SetShadow(Vector3 offset, Canvas c, double size)
-        {
-            var hostVisual = ElementCompositionPreview.GetElementVisual(c);
-            var compositor = hostVisual.Compositor;
+        //private void SetShadow(Vector3 offset, Canvas c, double size)
+        //{
+        //    var hostVisual = ElementCompositionPreview.GetElementVisual(c);
+        //    var compositor = hostVisual.Compositor;
 
-            //// Create a drop shadow
-            var dropShadow = compositor.CreateDropShadow();
-            dropShadow.Color = Colors.DarkSlateGray;
-            dropShadow.Opacity = 0.7f;
-            dropShadow.BlurRadius = 15;
-            dropShadow.Offset = offset;
-            //// Associate the shape of the shadow with the shape of the target element
-            // dropShadow.Mask = b2.GetAlphaMask();
+        //    //// Create a drop shadow
+        //    var dropShadow = compositor.CreateDropShadow();
+        //    dropShadow.Color = Colors.DarkSlateGray;
+        //    dropShadow.Opacity = 0.7f;
+        //    dropShadow.BlurRadius = 15;
+        //    dropShadow.Offset = offset;
+        //    //// Associate the shape of the shadow with the shape of the target element
+        //    // dropShadow.Mask = b2.GetAlphaMask();
 
-            //// Create a Visual to hold the shadow
-            var shadowVisual = compositor.CreateSpriteVisual();
-            shadowVisual.Brush = compositor.CreateColorBrush(Color.FromArgb(255, 0, 104, 99));
-            shadowVisual.Shadow = dropShadow;
-            shadowVisual.Size = new Vector2((float)size, 5);
-            //// Add the shadow as a child of the host in the visual tree
-            ElementCompositionPreview.SetElementChildVisual(c, shadowVisual);
-        }
+        //    //// Create a Visual to hold the shadow
+        //    var shadowVisual = compositor.CreateSpriteVisual();
+        //    shadowVisual.Brush = compositor.CreateColorBrush(Color.FromArgb(255, 0, 104, 99));
+        //    shadowVisual.Shadow = dropShadow;
+        //    shadowVisual.Size = new Vector2((float)size, 5);
+        //    //// Add the shadow as a child of the host in the visual tree
+        //    ElementCompositionPreview.SetElementChildVisual(c, shadowVisual);
+        //}
 
         private void Canv_PointerPressed(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
         {
@@ -234,7 +234,7 @@ namespace Tic_tac_toe
             
         }
 
-        private void SetZero(Canvas canvas)
+        private void SetZeroMin(Canvas canvas)
         {
             var path1 = new Windows.UI.Xaml.Shapes.Path();
             var stroke = ((LinearGradientBrush)Page.Resources["colorZero"]);
@@ -313,8 +313,75 @@ namespace Tic_tac_toe
             Canvas.SetTop(path1, 2);
         }
 
+        private void SetZeroMax(Canvas canvas)
+        {
+            var path1 = new Windows.UI.Xaml.Shapes.Path();
+            var stroke = ((LinearGradientBrush)Page.Resources["colorZero"]);
+            path1.Stroke = stroke;
+            path1.StrokeStartLineCap = PenLineCap.Round;
+            path1.StrokeEndLineCap = PenLineCap.Round;
+            path1.StrokeThickness = 3;
+            var geometryGroup1 = new GeometryGroup();
+            var pathGeometry1 = new PathGeometry();
+            var pathFigureCollection1 = new PathFigureCollection();
+            var pathFigure1 = new PathFigure();
+            pathFigure1.IsClosed = true;
+            pathFigure1.StartPoint = new Windows.Foundation.Point(20, 8);
+
+            pathFigureCollection1.Add(pathFigure1);
+            pathGeometry1.Figures = pathFigureCollection1;
+
+            var pathSegmentCollection1 = new PathSegmentCollection();
+            var pathSegment1 = new BezierSegment();
+            pathSegment1.Point1 = new Point(28, 8);
+            pathSegment1.Point2 = new Point(38.98, 11.99);
+            pathSegment1.Point3 = new Point(40.97, 23.97);
+            pathSegmentCollection1.Add(pathSegment1);
+
+            var pathSegment2 = new BezierSegment();
+            pathSegment2.Point1 = new Point(39.96, 31.98);
+            pathSegment2.Point2 = new Point(29.98, 38.98);
+            pathSegment2.Point3 = new Point(18.98, 36.99);
+            pathSegmentCollection1.Add(pathSegment2);
+
+            var pathSegment3 = new BezierSegment();
+            pathSegment3.Point1 = new Point(11.99, 35.98);
+            pathSegment3.Point2 = new Point(5.98, 29.99);
+            pathSegment3.Point3 = new Point(5.98, 20.98);
+            pathSegmentCollection1.Add(pathSegment3);
+
+            var pathSegment4 = new BezierSegment();
+            pathSegment4.Point1 = new Point(7.97, 14.97);
+            pathSegment4.Point2 = new Point(11.97, 8.97);
+            pathSegment4.Point3 = new Point(19.98, 8);
+            pathSegmentCollection1.Add(pathSegment4);
+            pathFigure1.Segments = pathSegmentCollection1;
+
+            geometryGroup1.Children.Add(pathGeometry1);
+            path1.Data = geometryGroup1;
+
+            canvas.Children.Add(path1);
+            Canvas.SetLeft(path1, 2);
+            Canvas.SetTop(path1, 2);
+        }
 
         private void SetX(Canvas canvas)
+        {
+            if (Size == 3) SetXMax(canvas);
+            else
+            {
+                SetXMin(canvas);
+            }
+        }
+        private void SetZero(Canvas canvas)
+        {
+            if (Size == 3) SetZeroMax(canvas);
+            else
+            {
+                SetZeroMin(canvas);
+            }
+        }
+        private void SetXMin(Canvas canvas)
         {
             var path1 = new Windows.UI.Xaml.Shapes.Path();
             var stroke = ((LinearGradientBrush)Page.Resources["colorX1"]);
@@ -362,6 +429,56 @@ namespace Tic_tac_toe
             pathSegment2.Point1 = new Point(16, 10);
             pathSegment2.Point2 = new Point(11.5, 16);
             pathSegment2.Point3 = new Point(4.5, 20.5);
+            pathSegmentCollection2.Add(pathSegment2);
+            pathFigure2.Segments = pathSegmentCollection2;
+            geometryGroup1.Children.Add(pathGeometry2);
+            path1.Data = geometryGroup1;
+            canvas.Children.Add(path1);
+            Canvas.SetLeft(path1, 3);
+            Canvas.SetTop(path1, 3);
+        }
+
+        private void SetXMax(Canvas canvas)
+        {
+            var path1 = new Windows.UI.Xaml.Shapes.Path();
+            var stroke = ((LinearGradientBrush)Page.Resources["colorX1"]);
+            path1.Stroke = stroke;
+            path1.StrokeStartLineCap = PenLineCap.Round;
+            path1.StrokeEndLineCap = PenLineCap.Round;
+            path1.StrokeThickness = 3;
+            var geometryGroup1 = new GeometryGroup();
+            var pathGeometry1 = new PathGeometry();
+            var pathFigureCollection1 = new PathFigureCollection();
+            var pathFigure1 = new PathFigure();
+            pathFigure1.StartPoint = new Windows.Foundation.Point(8.99, 6.98);
+
+            pathFigureCollection1.Add(pathFigure1);
+            pathGeometry1.Figures = pathFigureCollection1;
+
+            var pathSegmentCollection1 = new PathSegmentCollection();
+            var pathSegment1 = new BezierSegment();
+            pathSegment1.Point1 = new Point(19.99, 15.97);
+            pathSegment1.Point2 = new Point(30.99, 27.99);
+            pathSegment1.Point3 = new Point(38.96, 46.96);
+
+            pathSegmentCollection1.Add(pathSegment1);
+            pathFigure1.Segments = pathSegmentCollection1;
+            geometryGroup1.Children.Add(pathGeometry1);
+
+            var pathGeometry2 = new PathGeometry();
+            var pathFigureCollection2 = new PathFigureCollection();
+            var pathFigure2 = new PathFigure();
+            pathFigure2.StartPoint = new Windows.Foundation.Point(39.99, 3.99);
+
+            pathFigureCollection2.Add(pathFigure2);
+            pathGeometry2.Figures = pathFigureCollection2;
+
+            var pathSegmentCollection2 = new PathSegmentCollection();
+            var pathSegment2 = new BezierSegment();
+            pathSegment2.Point1 = new Point(31.97, 19.98);
+            pathSegment2.Point2 = new Point(22.98, 31.96);
+            pathSegment2.Point3 = new Point(8.99, 40.99);
+
             pathSegmentCollection2.Add(pathSegment2);
             pathFigure2.Segments = pathSegmentCollection2;
             geometryGroup1.Children.Add(pathGeometry2);

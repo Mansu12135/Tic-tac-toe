@@ -34,16 +34,13 @@ namespace Tic_tac_toe
         }
         private PlayingField Field;
         private bool onePlayer = true;
-        
-        private void BasicMode_PointerPressed(object sender, PointerRoutedEventArgs e)
-        {
-            onePlayer = true;
-            NewGame();
-        }
+        private bool basicMode = true;
+        private bool ModeMenu = false;
+       
         private void NewGame()
         {
             ContainerFirstPage.Visibility = Visibility.Collapsed;
-            Field = new PlayingField(this, 9, Table.ActualWidth - Table.BorderThickness.Left * 2, onePlayer);
+            Field = new PlayingField(this, basicMode? 3 : 9, Table.ActualWidth - Table.BorderThickness.Left * 2, onePlayer);
             Field.OnGameCompleted -= Field_OnGameCompleted;
             Field.OnGameCompleted += Field_OnGameCompleted;
             Field.OnMakeGo -= Field_OnMakeGo;
@@ -108,20 +105,62 @@ namespace Tic_tac_toe
             colorStoryboard.Begin();
         }
 
-        private void TextBlock_PointerPressed(object sender, PointerRoutedEventArgs e)
-        {
-            onePlayer = false;
-            NewGame();
-        }
+       
 
         private void TextBlock_PointerPressed_1(object sender, PointerRoutedEventArgs e)
         {
             ContainerFirstPage.Visibility = Visibility.Visible;
+            ModeMenu = false;
+            OnePlayer.Text = "One player";
+            TwoPlayer.Text = "Two player";
             colorStoryboard.Begin();
             Field = null;
         }
 
-        private void TextBlock_PointerPressed_2(object sender, PointerRoutedEventArgs e)
+    
+
+        private void TwoPlayer_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            if (!ModeMenu)
+            {
+                onePlayer = false;
+                ShowCheckModeMenu();
+            }
+            else
+            {
+                basicMode = false;
+                NewGame();
+            }
+        }
+
+        private void OnePlayer_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            if (!ModeMenu)
+            {
+                onePlayer = true;
+                ShowCheckModeMenu();
+            }
+            else
+            {
+                basicMode = true;
+                NewGame();
+            }
+           
+        }
+
+        private void ShowCheckModeMenu()
+        {
+            OnePlayer.Text = "3 x 3";
+            TwoPlayer.Text = "9 x 9";
+            ModeMenu = true;
+            //StackPanel ModeMenu = ((StackPanel)Resources["CheckMode"]);
+            //MenuContainer.Child = null;
+            //MenuContainer.Child = ModeMenu;
+        }
+
+       
+
+        private void StartGame_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
             NewGame();
         }

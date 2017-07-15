@@ -9,45 +9,7 @@
     mc:Ignorable="d">
     <Page.Resources>
 
-        <!--<StackPanel x:Name="CheckMode"  x:Key="CheckMode">
-            <Border Margin="20,25,20,0" BorderBrush="#EBFFFFFF" BorderThickness="4,5" CornerRadius="10" Background="White">
-                <Border Margin="0" BorderThickness="1,1,0,0" CornerRadius="10" BorderBrush="Black" >
-                    <Border Margin="0" BorderThickness="1" CornerRadius="10" BorderBrush="#FF898989" >
-                        <Border.Background>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="#FF0C84B1" Offset="0"/>
-                                <GradientStop Color="#FF27739D" Offset="1"/>
-                                <GradientStop Color="#FF5CCEF1" Offset="0.213"/>
-                                <GradientStop Color="#FF2EB7E4" Offset="0.352"/>
-                                <GradientStop Color="#FF1F78A4" Offset="0.889"/>
-                                <GradientStop Color="#FF1F8ABB" Offset="0.84"/>
-                            </LinearGradientBrush>
-                        </Border.Background>
-                        <TextBlock x:Name="Mode3" FontSize="48" FontFamily="Calibri Light" Padding="0,10" TextAlignment="Center" PointerPressed="Mode3_PointerPressed" >3 x 3</TextBlock>
-                    </Border>
-                </Border>
-            </Border>
-            <Border Margin="20,25,20,0" BorderBrush="#EBFFFFFF" BorderThickness="4,5" CornerRadius="10" Background="White">
-                <Border Margin="0" BorderThickness="1,1,0,0" CornerRadius="10" BorderBrush="Black" >
-                    <Border Margin="0" BorderThickness="1" CornerRadius="10" BorderBrush="#FF898989" >
-                        <Border.Background>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="#FF0C84B1" Offset="0"/>
-                                <GradientStop Color="#FF27739D" Offset="1"/>
-                                <GradientStop Color="#FF5CCEF1" Offset="0.213"/>
-                                <GradientStop Color="#FF2EB7E4" Offset="0.352"/>
-                                <GradientStop Color="#FF1F78A4" Offset="0.889"/>
-                                <GradientStop Color="#FF1F8ABB" Offset="0.84"/>
-                            </LinearGradientBrush>
-                        </Border.Background>
-                        <TextBlock FontSize="48" x:Name="Mode9" FontFamily="Calibri Light" Padding="0,10" TextAlignment="Center" PointerPressed="Mode9_PointerPressed" >5 x 5</TextBlock>
-                    </Border>
-                </Border>
-            </Border>
-
-
-
-        </StackPanel>-->
+  
 
         <LinearGradientBrush x:Key="colorZero" StartPoint="1,0" EndPoint="0,0">
             <GradientStop Color="#FFBBBBBB" Offset="0"/>
@@ -386,7 +348,7 @@
 
         </Border>
         <Border Margin="0" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock x:Name="CountWin" Foreground="White" FontSize="36" FontFamily="Cambria" FontStyle="Italic" FontWeight="Bold">0 : 0</TextBlock>
+            <TextBlock x:Name="CountWin" Foreground="White" FontSize="36" FontFamily="Cambria" FontStyle="Italic" FontWeight="Bold" PointerPressed="CountWin_PointerPressed">0 : 0</TextBlock>
         </Border>
         <Border x:Name="ContainerFirstPage" Grid.RowSpan="3" Grid.ColumnSpan="5" Background="White" Canvas.ZIndex="2">
             <Border Margin="10" BorderBrush="#FFFFF752" BorderThickness="2" CornerRadius="20" Background="#38FDFDB3">
@@ -797,5 +759,10 @@
             </Path>
 
         </Canvas>-->
+
+        <Border x:Name="FinishTableContainer" Grid.Row="1" Grid.ColumnSpan="5" HorizontalAlignment="Center" VerticalAlignment="Top" Visibility="Collapsed">
+            <GridView x:Name="FinishTable">
+            </GridView>
+        </Border>
     </Grid>
 </Page>

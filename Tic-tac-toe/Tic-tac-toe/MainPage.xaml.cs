@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Numerics;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -36,7 +36,7 @@ namespace Tic_tac_toe
         private bool onePlayer = true;
         private bool basicMode = true;
         private bool ModeMenu = false;
-       
+        private ObservableCollection<RezultTable> rezultTable = new ObservableCollection<RezultTable>();
         private void NewGame()
         {
             ContainerFirstPage.Visibility = Visibility.Collapsed;
@@ -152,17 +152,32 @@ namespace Tic_tac_toe
         {
             OnePlayer.Text = "3 x 3";
             TwoPlayer.Text = "9 x 9";
-            ModeMenu = true;
-            //StackPanel ModeMenu = ((StackPanel)Resources["CheckMode"]);
-            //MenuContainer.Child = null;
-            //MenuContainer.Child = ModeMenu;
+            ModeMenu = true;      
         }
-
-       
-
+  
         private void StartGame_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
             NewGame();
         }
+
+        private void CountWin_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            rezultTable.Add(new RezultTable(){PlayerName = "Player one",AllGames = countZ + countX,LossGames = countZ, WinGames = countX, TieGames = 0, WinKoef = countX/(countX+ countZ), Points = countX});
+            Table.Visibility = Visibility.Collapsed;
+            FinishTableContainer.Visibility = Visibility.Visible;
+            FinishTable.ItemsSource = rezultTable;
+
+        }
+    }
+
+    public class RezultTable
+    {
+        public string PlayerName { get; set; }
+        public int AllGames { get; set; }
+        public int WinGames { get; set; }
+        public int LossGames { get; set; }
+        public int TieGames { get; set; }
+        public double WinKoef { get; set; }
+        public int Points { get; set; }
     }
 }

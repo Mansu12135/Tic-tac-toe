@@ -76,6 +76,7 @@ namespace Tic_tac_toe
        
         public StackPanel Draw()
         {
+            string max = Size == 3 ? "Max" : "";
             Dagger = true;
             var sideSize = Width / Size;
             var verticalPanel = new StackPanel();
@@ -97,18 +98,18 @@ namespace Tic_tac_toe
                         if (j == 0)
                         {
                             offset = new Vector3(6, 6, 0);
-                            bordResource = ((Border)Page.Resources["BorderTopLeft"]);
+                            bordResource = ((Border)Page.Resources["BorderTopLeft"+ max]);
                         }
                         else if (j == Size - 1)
                         {
                             offset = new Vector3(-6, 6, 0);
-                            bordResource = ((Border)Page.Resources["BorderTopRight"]);
+                            bordResource = ((Border)Page.Resources["BorderTopRight"+ max]);
 
                         }
                         else
                         {
                             offset = new Vector3(0, 6, 0);
-                            bordResource = ((Border)Page.Resources["BorderTop"]);
+                            bordResource = ((Border)Page.Resources["BorderTop"+ max]);
                         }
                     }
                     else if (i == Size - 1)
@@ -116,18 +117,18 @@ namespace Tic_tac_toe
                         if (j == 0)
                         {
                             offset = new Vector3(6, -6, 0);
-                            bordResource = ((Border)Page.Resources["BorderBottomLeft"]);
+                            bordResource = ((Border)Page.Resources["BorderBottomLeft"+ max]);
                         }
                         else if (j == Size - 1)
                         {
                             offset = new Vector3(0, 6, 0);
-                            bordResource = ((Border)Page.Resources["BorderBottomRight"]);
+                            bordResource = ((Border)Page.Resources["BorderBottomRight"+ max]);
 
                         }
                         else
                         {
                             offset = new Vector3(-6, -6, 0);
-                            bordResource = ((Border)Page.Resources["BorderBottomCenter"]);
+                            bordResource = ((Border)Page.Resources["BorderBottomCenter"+ max]);
                         }
                     }
                     else
@@ -135,18 +136,18 @@ namespace Tic_tac_toe
                         if (j == 0)
                         {
                             offset = new Vector3(6, 0, 0);
-                            bordResource = ((Border)Page.Resources["BorderLeft"]);
+                            bordResource = ((Border)Page.Resources["BorderLeft"+ max]);
                         }
                         else if (j == Size - 1)
                         {
                             offset = new Vector3(-6, 0, 0);
-                            bordResource = ((Border)Page.Resources["BorderRight"]);
+                            bordResource = ((Border)Page.Resources["BorderRight"+ max]);
 
                         }
                         else
                         {
                             offset = new Vector3(0, 0, 0);
-                            bordResource = ((Border)Page.Resources["BorderCenter"]);
+                            bordResource = ((Border)Page.Resources["BorderCenter"+ max]);
                         }
                     }
                     var bord = new Border() { CornerRadius = bordResource.CornerRadius, BorderBrush = bordResource.BorderBrush, BorderThickness = bordResource.BorderThickness };
@@ -320,7 +321,7 @@ namespace Tic_tac_toe
             path1.Stroke = stroke;
             path1.StrokeStartLineCap = PenLineCap.Round;
             path1.StrokeEndLineCap = PenLineCap.Round;
-            path1.StrokeThickness = 3;
+            path1.StrokeThickness = 9;
             var geometryGroup1 = new GeometryGroup();
             var pathGeometry1 = new PathGeometry();
             var pathFigureCollection1 = new PathFigureCollection();
@@ -361,8 +362,8 @@ namespace Tic_tac_toe
             path1.Data = geometryGroup1;
 
             canvas.Children.Add(path1);
-            Canvas.SetLeft(path1, 2);
-            Canvas.SetTop(path1, 2);
+            Canvas.SetLeft(path1, 20);
+            Canvas.SetTop(path1, 20);
         }
 
         private void SetX(Canvas canvas)
@@ -445,7 +446,7 @@ namespace Tic_tac_toe
             path1.Stroke = stroke;
             path1.StrokeStartLineCap = PenLineCap.Round;
             path1.StrokeEndLineCap = PenLineCap.Round;
-            path1.StrokeThickness = 3;
+            path1.StrokeThickness = 9;
             var geometryGroup1 = new GeometryGroup();
             var pathGeometry1 = new PathGeometry();
             var pathFigureCollection1 = new PathFigureCollection();
@@ -484,8 +485,8 @@ namespace Tic_tac_toe
             geometryGroup1.Children.Add(pathGeometry2);
             path1.Data = geometryGroup1;
             canvas.Children.Add(path1);
-            Canvas.SetLeft(path1, 3);
-            Canvas.SetTop(path1, 3);
+            Canvas.SetLeft(path1, 20);
+            Canvas.SetTop(path1, 20);
         }
     }
 }
